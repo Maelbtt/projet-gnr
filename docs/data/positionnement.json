@@ -1,0 +1,88 @@
+{
+  "date": "2026-11-20",
+  "secteurs": [
+    {
+      "nom": "Énergie",
+      "these": "Majors européennes et raffinage plutôt que majors américaines, producteurs purs et services."
+    },
+    {
+      "nom": "Métaux et mines",
+      "these": "Or en couverture, cuivre en déficit, acier et aluminium protégés aux États-Unis et en Europe."
+    },
+    {
+      "nom": "Agriculture",
+      "these": "Biocarburants et emballage plutôt que bois américain et produits phytosanitaires."
+    }
+  ],
+  "avis": {
+    "Pétrolières intégrées": 1,
+    "Exploration-production": -1,
+    "Raffinage": 1,
+    "Services pétroliers": -1,
+    "Uranium": 0,
+    "Mines diversifiées et fer": 0,
+    "Or": 1,
+    "Acier": 1,
+    "Cuivre": 1,
+    "Streaming métaux précieux": 0,
+    "Aluminium": 1,
+    "Papier, bois et forêts": -1,
+    "Engrais": 0,
+    "Emballage": 1,
+    "Négoce et transformation": 1,
+    "Semences et phyto": -1
+  },
+  "indicateurs": {
+    "DCOILBRENTEU": {
+      "sous_secteurs": [
+        "Pétrolières intégrées",
+        "Exploration-production"
+      ],
+      "explication": "niveau du baril"
+    },
+    "DFII10": {
+      "sous_secteurs": [
+        "Or"
+      ],
+      "explication": "un taux réel qui monte joue contre l'or"
+    },
+    "DTWEXBGS": {
+      "sous_secteurs": [
+        "Or",
+        "Cuivre"
+      ],
+      "explication": "un dollar fort pèse sur le prix des métaux"
+    },
+    "MORTGAGE30US": {
+      "sous_secteurs": [
+        "Papier, bois et forêts"
+      ],
+      "explication": "des taux hauts freinent la construction"
+    },
+    "HOUST": {
+      "sous_secteurs": [
+        "Papier, bois et forêts"
+      ],
+      "explication": "plus de mises en chantier = plus de demande de bois"
+    },
+    "PCOPPUSDM": {
+      "sous_secteurs": [
+        "Cuivre"
+      ],
+      "explication": "déficit d'offre attendu"
+    },
+    "WDISTUS1": {
+      "sous_secteurs": [
+        "Raffinage"
+      ],
+      "explication": "retour vers la moyenne 5 ans = signal de réduction (seuil ~110 Mb)"
+    },
+    "WCESTUS1": {
+      "sous_secteurs": [
+        "Pétrolières intégrées",
+        "Exploration-production"
+      ],
+      "explication": "équilibre du marché du brut"
+    }
+  }
+}

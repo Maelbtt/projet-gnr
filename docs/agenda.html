@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Agenda · Portefeuille Ressources naturelles</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="bande"><div class="wrap">
+<div class="haut"><a class="marque" href="index.html">Portefeuille Ressources naturelles</a><nav><a href="index.html">Synthèse</a><a href="indice.html">Indice</a><a href="marches.html">Marchés</a><a href="lettres.html">Lettre mensuelle</a><a href="hebdo.html">Hebdo</a><a href="secteurs.html">Secteurs</a><a href="agenda.html" aria-current="page">Agenda</a></nav></div>
+<div class="titre"><h1>Agenda</h1><p>Les publications et événements qui comptent pour nos avis sectoriels, et ce que chacun peut changer au portefeuille.</p></div>
+</div></header>
+<main class="wrap">
+
+<section class="card">
+  <div class="semaine-tete">
+    <div>
+      <h2 id="titre-semaine">La semaine</h2>
+      <p class="note" id="note-agenda"></p>
+    </div>
+    <div class="semaine-boutons">
+      <button type="button" id="prec" aria-label="Semaine précédente">←</button>
+      <button type="button" id="auj">Cette semaine</button>
+      <button type="button" id="suiv" aria-label="Semaine suivante">→</button>
+      <button type="button" id="copier">Copier le texte</button>
+    </div>
+  </div>
+  <div id="semaine"></div>
+  <p class="note" id="quotidien"></p>
+</section>
+
+<section class="card">
+  <h2>Calendrier complet</h2>
+  <p class="note">Classé par prochaine publication. Les dates « vers le… » sont approximatives. Les données suivies en continu sont listées sous la semaine ; les indicateurs mis à jour automatiquement sont sur la page <a href="marches.html">Marchés</a>.</p>
+  <div class="filtres">
+    <label>Secteur <select id="f-secteur"><option value="">Tous</option></select></label>
+    <label>Fréquence <select id="f-freq"><option value="">Toutes</option></select></label>
+  </div>
+  <div class="table-defile">
+    <table>
+      <thead><tr><th>Indicateur</th><th>Secteur</th><th>Fréquence</th><th>Prochaine publication</th><th>Source</th><th>Avis concerné et pourquoi</th></tr></thead>
+      <tbody id="table-agenda"></tbody>
+    </table>
+  </div>
+</section>
+</main>
+<footer>Portefeuille fictif, à but pédagogique. Données : LSEG Workspace, usage académique. Les performances passées ne préjugent pas des performances futures.</footer>
+<script src="assets/agenda-donnees.js"></script>
+<script src="assets/agenda.js"></script>
+</body>
+</html>

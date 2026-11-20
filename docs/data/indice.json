@@ -1,0 +1,579 @@
+{
+ "date": "2026-10-31",
+ "indice": "S&P Global Natural Resources Index (Net TR, USD)",
+ "nb_valeurs": 91,
+ "plafond_secteur": 33.33,
+ "secteurs": [
+  {
+   "nom": "Énergie",
+   "poids": 37.97,
+   "n": 30
+  },
+  {
+   "nom": "Agriculture",
+   "poids": 32.6,
+   "n": 31
+  },
+  {
+   "nom": "Métaux et mines",
+   "poids": 29.43,
+   "n": 30
+  }
+ ],
+ "sous_secteurs": [
+  {
+   "secteur": "Énergie",
+   "nom": "Pétrolières intégrées",
+   "poids": 26.79,
+   "n": 13,
+   "valeurs": [
+    {
+     "nom": "Shell",
+     "poids": 5.64
+    },
+    {
+     "nom": "ExxonMobil",
+     "poids": 5.44
+    },
+    {
+     "nom": "TotalEnergies",
+     "poids": 3.72
+    },
+    {
+     "nom": "Chevron",
+     "poids": 3.1
+    },
+    {
+     "nom": "BP",
+     "poids": 2.46
+    },
+    {
+     "nom": "Suncor",
+     "poids": 1.76
+    },
+    {
+     "nom": "Eni",
+     "poids": 1.13
+    },
+    {
+     "nom": "Cenovus Energy",
+     "poids": 0.83
+    },
+    {
+     "nom": "Equinor",
+     "poids": 0.77
+    },
+    {
+     "nom": "Petrobras",
+     "poids": 0.77
+    },
+    {
+     "nom": "Repsol",
+     "poids": 0.71
+    },
+    {
+     "nom": "Imperial Oil",
+     "poids": 0.39
+    },
+    {
+     "nom": "Ecopetrol",
+     "poids": 0.08
+    }
+   ]
+  },
+  {
+   "secteur": "Énergie",
+   "nom": "Exploration-production",
+   "poids": 6.67,
+   "n": 9,
+   "valeurs": [
+    {
+     "nom": "Canadian Natural Resources",
+     "poids": 2.18
+    },
+    {
+     "nom": "ConocoPhillips",
+     "poids": 1.32
+    },
+    {
+     "nom": "Woodside Energy",
+     "poids": 0.83
+    },
+    {
+     "nom": "EOG Resources",
+     "poids": 0.62
+    },
+    {
+     "nom": "INPEX",
+     "poids": 0.44
+    },
+    {
+     "nom": "Devon Energy",
+     "poids": 0.42
+    },
+    {
+     "nom": "Occidental Petroleum",
+     "poids": 0.33
+    },
+    {
+     "nom": "Diamondback Energy",
+     "poids": 0.29
+    },
+    {
+     "nom": "EQT",
+     "poids": 0.24
+    }
+   ]
+  },
+  {
+   "secteur": "Énergie",
+   "nom": "Raffinage",
+   "poids": 2.53,
+   "n": 3,
+   "valeurs": [
+    {
+     "nom": "Marathon Petroleum",
+     "poids": 0.91
+    },
+    {
+     "nom": "Valero Energy",
+     "poids": 0.83
+    },
+    {
+     "nom": "Phillips 66",
+     "poids": 0.79
+    }
+   ]
+  },
+  {
+   "secteur": "Énergie",
+   "nom": "Services pétroliers",
+   "poids": 1.34,
+   "n": 4,
+   "valeurs": [
+    {
+     "nom": "SLB",
+     "poids": 0.56
+    },
+    {
+     "nom": "Baker Hughes",
+     "poids": 0.38
+    },
+    {
+     "nom": "Halliburton",
+     "poids": 0.21
+    },
+    {
+     "nom": "Tenaris",
+     "poids": 0.18
+    }
+   ]
+  },
+  {
+   "secteur": "Énergie",
+   "nom": "Uranium",
+   "poids": 0.62,
+   "n": 1,
+   "valeurs": [
+    {
+     "nom": "Cameco",
+     "poids": 0.62
+    }
+   ]
+  },
+  {
+   "secteur": "Agriculture",
+   "nom": "Papier, bois et forêts",
+   "poids": 10.76,
+   "n": 9,
+   "valeurs": [
+    {
+     "nom": "UPM-Kymmene",
+     "poids": 2.78
+    },
+    {
+     "nom": "SCA (Svenska Cellulosa)",
+     "poids": 1.55
+    },
+    {
+     "nom": "Stora Enso",
+     "poids": 1.4
+    },
+    {
+     "nom": "Suzano",
+     "poids": 1.33
+    },
+    {
+     "nom": "Oji",
+     "poids": 0.99
+    },
+    {
+     "nom": "Mondi",
+     "poids": 0.96
+    },
+    {
+     "nom": "West Fraser",
+     "poids": 0.81
+    },
+    {
+     "nom": "Weyerhaeuser",
+     "poids": 0.69
+    },
+    {
+     "nom": "Rayonier",
+     "poids": 0.25
+    }
+   ]
+  },
+  {
+   "secteur": "Agriculture",
+   "nom": "Engrais",
+   "poids": 8.28,
+   "n": 5,
+   "valeurs": [
+    {
+     "nom": "Nutrien",
+     "poids": 4.92
+    },
+    {
+     "nom": "Yara International",
+     "poids": 1.5
+    },
+    {
+     "nom": "CF Industries",
+     "poids": 0.89
+    },
+    {
+     "nom": "ICL",
+     "poids": 0.7
+    },
+    {
+     "nom": "Mosaic",
+     "poids": 0.27
+    }
+   ]
+  },
+  {
+   "secteur": "Agriculture",
+   "nom": "Emballage",
+   "poids": 6.38,
+   "n": 8,
+   "valeurs": [
+    {
+     "nom": "SIG",
+     "poids": 1.3
+    },
+    {
+     "nom": "Packaging Corp of America",
+     "poids": 1.07
+    },
+    {
+     "nom": "Smurfit Westrock",
+     "poids": 1.06
+    },
+    {
+     "nom": "Amcor",
+     "poids": 1.03
+    },
+    {
+     "nom": "International Paper",
+     "poids": 0.9
+    },
+    {
+     "nom": "Avery Dennison",
+     "poids": 0.66
+    },
+    {
+     "nom": "Sonoco Products",
+     "poids": 0.23
+    },
+    {
+     "nom": "Graphic Packaging Holding",
+     "poids": 0.12
+    }
+   ]
+  },
+  {
+   "secteur": "Agriculture",
+   "nom": "Négoce et transformation",
+   "poids": 4.38,
+   "n": 5,
+   "valeurs": [
+    {
+     "nom": "Archer-Daniels-Midland",
+     "poids": 1.74
+    },
+    {
+     "nom": "Wilmar International",
+     "poids": 1.32
+    },
+    {
+     "nom": "Bunge Global",
+     "poids": 0.62
+    },
+    {
+     "nom": "Darling Ingredients",
+     "poids": 0.42
+    },
+    {
+     "nom": "Ingredion",
+     "poids": 0.29
+    }
+   ]
+  },
+  {
+   "secteur": "Agriculture",
+   "nom": "Semences et phyto",
+   "poids": 2.81,
+   "n": 4,
+   "valeurs": [
+    {
+     "nom": "Vylor",
+     "poids": 2.28
+    },
+    {
+     "nom": "Corteva",
+     "poids": 0.37
+    },
+    {
+     "nom": "Scotts Miracle-Gro",
+     "poids": 0.13
+    },
+    {
+     "nom": "FMC",
+     "poids": 0.04
+    }
+   ]
+  },
+  {
+   "secteur": "Métaux et mines",
+   "nom": "Mines diversifiées et fer",
+   "poids": 10.22,
+   "n": 7,
+   "valeurs": [
+    {
+     "nom": "BHP",
+     "poids": 4.48
+    },
+    {
+     "nom": "Glencore",
+     "poids": 1.54
+    },
+    {
+     "nom": "Anglo American",
+     "poids": 1.36
+    },
+    {
+     "nom": "Vale",
+     "poids": 0.93
+    },
+    {
+     "nom": "Rio Tinto",
+     "poids": 0.9
+    },
+    {
+     "nom": "Teck Resources",
+     "poids": 0.63
+    },
+    {
+     "nom": "Fortescue",
+     "poids": 0.39
+    }
+   ]
+  },
+  {
+   "secteur": "Métaux et mines",
+   "nom": "Or",
+   "poids": 8.73,
+   "n": 8,
+   "valeurs": [
+    {
+     "nom": "Newmont",
+     "poids": 2.65
+    },
+    {
+     "nom": "Agnico Eagle",
+     "poids": 1.95
+    },
+    {
+     "nom": "Barrick",
+     "poids": 1.44
+    },
+    {
+     "nom": "AngloGold Ashanti",
+     "poids": 0.79
+    },
+    {
+     "nom": "Gold Fields",
+     "poids": 0.68
+    },
+    {
+     "nom": "Northern Star Resources",
+     "poids": 0.59
+    },
+    {
+     "nom": "Kinross Gold",
+     "poids": 0.56
+    },
+    {
+     "nom": "Zijin Gold",
+     "poids": 0.07
+    }
+   ]
+  },
+  {
+   "secteur": "Métaux et mines",
+   "nom": "Acier",
+   "poids": 4.21,
+   "n": 6,
+   "valeurs": [
+    {
+     "nom": "Nucor",
+     "poids": 1.45
+    },
+    {
+     "nom": "Steel Dynamics",
+     "poids": 0.79
+    },
+    {
+     "nom": "ArcelorMittal",
+     "poids": 0.59
+    },
+    {
+     "nom": "Nippon Steel",
+     "poids": 0.52
+    },
+    {
+     "nom": "Reliance",
+     "poids": 0.52
+    },
+    {
+     "nom": "POSCO",
+     "poids": 0.34
+    }
+   ]
+  },
+  {
+   "secteur": "Métaux et mines",
+   "nom": "Cuivre",
+   "poids": 3.62,
+   "n": 5,
+   "valeurs": [
+    {
+     "nom": "Freeport-McMoRan",
+     "poids": 2.09
+    },
+    {
+     "nom": "Zijin Mining",
+     "poids": 0.49
+    },
+    {
+     "nom": "First Quantum Minerals",
+     "poids": 0.37
+    },
+    {
+     "nom": "Southern Copper",
+     "poids": 0.35
+    },
+    {
+     "nom": "Antofagasta",
+     "poids": 0.34
+    }
+   ]
+  },
+  {
+   "secteur": "Métaux et mines",
+   "nom": "Streaming métaux précieux",
+   "poids": 2.23,
+   "n": 2,
+   "valeurs": [
+    {
+     "nom": "Wheaton Precious Metals",
+     "poids": 1.23
+    },
+    {
+     "nom": "Franco-Nevada",
+     "poids": 1.01
+    }
+   ]
+  },
+  {
+   "secteur": "Métaux et mines",
+   "nom": "Aluminium",
+   "poids": 0.41,
+   "n": 2,
+   "valeurs": [
+    {
+     "nom": "Norsk Hydro",
+     "poids": 0.22
+    },
+    {
+     "nom": "China Hongqiao",
+     "poids": 0.19
+    }
+   ]
+  }
+ ],
+ "top10": [
+  {
+   "nom": "Shell",
+   "secteur": "Énergie",
+   "sous_secteur": "Pétrolières intégrées",
+   "poids": 5.64
+  },
+  {
+   "nom": "ExxonMobil",
+   "secteur": "Énergie",
+   "sous_secteur": "Pétrolières intégrées",
+   "poids": 5.44
+  },
+  {
+   "nom": "Nutrien",
+   "secteur": "Agriculture",
+   "sous_secteur": "Engrais",
+   "poids": 4.92
+  },
+  {
+   "nom": "BHP",
+   "secteur": "Métaux et mines",
+   "sous_secteur": "Mines diversifiées et fer",
+   "poids": 4.48
+  },
+  {
+   "nom": "TotalEnergies",
+   "secteur": "Énergie",
+   "sous_secteur": "Pétrolières intégrées",
+   "poids": 3.72
+  },
+  {
+   "nom": "Chevron",
+   "secteur": "Énergie",
+   "sous_secteur": "Pétrolières intégrées",
+   "poids": 3.1
+  },
+  {
+   "nom": "UPM-Kymmene",
+   "secteur": "Agriculture",
+   "sous_secteur": "Papier, bois et forêts",
+   "poids": 2.78
+  },
+  {
+   "nom": "Newmont",
+   "secteur": "Métaux et mines",
+   "sous_secteur": "Or",
+   "poids": 2.65
+  },
+  {
+   "nom": "BP",
+   "secteur": "Énergie",
+   "sous_secteur": "Pétrolières intégrées",
+   "poids": 2.46
+  },
+  {
+   "nom": "Vylor",
+   "secteur": "Agriculture",
+   "sous_secteur": "Semences et phyto",
+   "poids": 2.28
+  }
+ ]
+}

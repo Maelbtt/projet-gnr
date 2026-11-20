@@ -1,0 +1,42 @@
+{
+ "maj": "2026-11-20",
+ "source": "FRED (calendrier des publications)",
+ "dates": [
+  {
+   "id": "logement-us",
+   "date": "2026-11-25"
+  },
+  {
+   "id": "pib-us",
+   "date": "2026-11-25"
+  },
+  {
+   "id": "pce-us",
+   "date": "2026-11-25"
+  },
+  {
+   "id": "emploi-us",
+   "date": "2026-12-04"
+  },
+  {
+   "id": "cpi-us",
+   "date": "2026-12-10"
+  },
+  {
+   "id": "logement-us",
+   "date": "2026-12-17"
+  },
+  {
+   "id": "logement-us",
+   "date": "2026-12-23"
+  },
+  {
+   "id": "pib-us",
+   "date": "2026-12-23"
+  },
+  {
+   "id": "pce-us",
+   "date": "2026-12-23"
+  }
+ ]
+}

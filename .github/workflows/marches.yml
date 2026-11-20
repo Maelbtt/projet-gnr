@@ -1,0 +1,38 @@
+# Met à jour docs/data/marches.json (FRED + EIA) chaque jour ouvré, puis publie.
+name: Indicateurs de marché
+
+on:
+  schedule:
+    - cron: "37 11 * * 1-5"   # 11h37 UTC, du lundi au vendredi
+  workflow_dispatch:           # bouton « Run workflow » pour lancer à la main
+
+permissions:
+  contents: write
+
+jobs:
+  maj:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Récupérer les séries
+        env:
+          FRED_API_KEY: ${{ secrets.FRED_API_KEY }}
+          EIA_API_KEY: ${{ secrets.EIA_API_KEY }}
+        run: python scripts/marches.py
+      - name: Enregistrer si quelque chose a changé
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
+          git add docs/data/*.json
+          git diff --cached --quiet && exit 0
+          git commit -m "Indicateurs de marché : mise à jour automatique"
+          # Si tu as poussé entre-temps, on récupère tes changements avant d'envoyer
+          # (en cas de conflit sur les fichiers de données, la version de l'Action l'emporte).
+          for essai in 1 2 3; do
+            git pull --rebase -X theirs origin main && git push && exit 0
+            sleep 5
+          done
+          exit 1

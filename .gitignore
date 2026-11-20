@@ -1,0 +1,7 @@
+# Données brutes LSEG et SSGA : ne jamais publier (licence LSEG)
+data_brute/
+__pycache__/
+.DS_Store
+
+# État du portefeuille : contient le niveau de l'indice LSEG (non publiable). À sauvegarder ailleurs.
+portefeuille/

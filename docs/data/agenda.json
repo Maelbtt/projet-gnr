@@ -1,0 +1,469 @@
+{
+  "maj": "2026-11-20",
+  "note": "Heures de Paris. Les publications hebdomadaires américaines peuvent être décalées les semaines fériées aux États-Unis. Les dates des publications américaines (emploi, inflation, PIB, logement) sont mises à jour automatiquement depuis FRED.",
+  "indicateurs": [
+    {
+      "id": "eia",
+      "nom": "Stocks pétroliers US (EIA)",
+      "secteur": "Énergie",
+      "frequence": "Hebdomadaire",
+      "regle": {
+        "type": "hebdo",
+        "jour": 3,
+        "heure": "16:30"
+      },
+      "source": "EIA, Weekly Petroleum Status Report",
+      "lien": "https://www.eia.gov/petroleum/supply/weekly/",
+      "pourquoi": "Stocks de distillats : un retour vers la moyenne 5 ans (~110 Mb) est le signal de réduction du raffinage.",
+      "sous_secteurs": [
+        "Raffinage"
+      ]
+    },
+    {
+      "id": "baker",
+      "nom": "Forages actifs (Baker Hughes rig count)",
+      "secteur": "Énergie",
+      "frequence": "Hebdomadaire",
+      "regle": {
+        "type": "hebdo",
+        "jour": 5,
+        "heure": "19:00"
+      },
+      "decalages": [
+        {
+          "de": "2026-11-27",
+          "a": "2026-11-25"
+        },
+        {
+          "de": "2026-12-25",
+          "a": "2026-12-23"
+        },
+        {
+          "de": "2027-01-01",
+          "a": "2026-12-30"
+        }
+      ],
+      "source": "Baker Hughes",
+      "lien": "https://rigcount.bakerhughes.com/",
+      "pourquoi": "Activité des producteurs : une hausse durable du nombre de forages contredirait l'avis sur les services et les E&P.",
+      "sous_secteurs": [
+        "Services pétroliers",
+        "Exploration-production"
+      ]
+    },
+    {
+      "id": "cftc",
+      "nom": "Positions des spéculateurs (CFTC COT)",
+      "secteur": "Transversal",
+      "frequence": "Hebdomadaire",
+      "regle": {
+        "type": "hebdo",
+        "jour": 5,
+        "heure": "21:30"
+      },
+      "source": "CFTC, Commitments of Traders",
+      "lien": "https://www.cftc.gov/MarketReports/CommitmentsofTraders/index.htm",
+      "pourquoi": "Positionnement des fonds sur le pétrole, l'or, le cuivre et le soja : repère les marchés trop chargés d'un côté.",
+      "sous_secteurs": [],
+      "decalages": [
+        {
+          "de": "2026-11-27",
+          "a": "2026-11-30"
+        },
+        {
+          "de": "2026-12-25",
+          "a": "2026-12-28"
+        },
+        {
+          "de": "2027-01-01",
+          "a": "2027-01-04"
+        }
+      ]
+    },
+    {
+      "id": "export-sales",
+      "nom": "Ventes à l'export US (USDA)",
+      "secteur": "Agriculture",
+      "frequence": "Hebdomadaire",
+      "regle": {
+        "type": "hebdo",
+        "jour": 4,
+        "heure": "14:30"
+      },
+      "source": "USDA, Export Sales Report",
+      "lien": "https://apps.fas.usda.gov/export-sales/esrd1.html",
+      "pourquoi": "Demande de soja et de maïs américains : volumes du négoce et revenu des agriculteurs.",
+      "sous_secteurs": [
+        "Négoce et transformation",
+        "Semences et phyto"
+      ],
+      "decalages": [
+        {
+          "de": "2026-11-26",
+          "a": "2026-11-27"
+        }
+      ]
+    },
+    {
+      "id": "hormuz",
+      "nom": "Trafic par le détroit d'Ormuz",
+      "secteur": "Transversal",
+      "frequence": "Continu",
+      "source": "Kpler, Vortexa, Windward",
+      "pourquoi": "Brut, produits raffinés et engrais. Une réouverture complète pèse sur l'Énergie et le raffinage.",
+      "sous_secteurs": []
+    },
+    {
+      "id": "lme",
+      "nom": "Prix et stocks LME (cuivre, aluminium)",
+      "secteur": "Métaux",
+      "frequence": "Quotidien",
+      "ric": "CMCU3, CMAL3",
+      "source": "LME via LSEG Workspace",
+      "pourquoi": "Déficit et stocks au plus bas. Une reconstitution des stocks contredirait l'avis.",
+      "sous_secteurs": [
+        "Cuivre",
+        "Aluminium"
+      ]
+    },
+    {
+      "id": "or",
+      "nom": "Or, dollar et taux réel 10 ans US",
+      "secteur": "Métaux",
+      "frequence": "Quotidien",
+      "ric": "XAU=, .DXY",
+      "source": "LSEG Workspace",
+      "pourquoi": "Le dollar et le taux réel jouent contre l'or.",
+      "sous_secteurs": [
+        "Or"
+      ]
+    },
+    {
+      "id": "crack",
+      "nom": "Crack diesel et courbe à terme du Brent",
+      "secteur": "Énergie",
+      "frequence": "Quotidien",
+      "ric": "LCOc1, LGOc1, HOc1, 0#LCO:",
+      "source": "ICE, CME via LSEG Workspace",
+      "pourquoi": "Marge des raffineurs et prix anticipé du baril.",
+      "sous_secteurs": [
+        "Raffinage",
+        "Exploration-production"
+      ]
+    },
+    {
+      "id": "opecplus",
+      "nom": "Réunion OPEP+",
+      "secteur": "Énergie",
+      "frequence": "Mensuel",
+      "source": "OPEP",
+      "lien": "https://www.opec.org/",
+      "pourquoi": "Cadre de production 2027 : l'offre de brut.",
+      "sous_secteurs": [
+        "Exploration-production",
+        "Pétrolières intégrées"
+      ]
+    },
+    {
+      "id": "momr",
+      "nom": "Rapport mensuel de l'OPEP (MOMR)",
+      "secteur": "Énergie",
+      "frequence": "Mensuel",
+      "source": "OPEP",
+      "lien": "https://www.opec.org/",
+      "pourquoi": "Prévisions de demande de l'OPEP, souvent plus optimistes que celles de l'AIE.",
+      "sous_secteurs": [
+        "Exploration-production",
+        "Pétrolières intégrées"
+      ]
+    },
+    {
+      "id": "omr",
+      "nom": "Rapport mensuel de l'AIE (Oil Market Report)",
+      "secteur": "Énergie",
+      "frequence": "Mensuel",
+      "source": "Agence internationale de l'énergie",
+      "lien": "https://www.iea.org/data-and-statistics/data-product/oil-market-report-omr",
+      "pourquoi": "Balance offre/demande et raffinage. Le rapport de novembre annonce un retour au surplus et des déstockages de diesel d'urgence.",
+      "sous_secteurs": [
+        "Raffinage",
+        "Exploration-production"
+      ]
+    },
+    {
+      "id": "steo",
+      "nom": "Prévisions de l'EIA (Short-Term Energy Outlook)",
+      "secteur": "Énergie",
+      "frequence": "Mensuel",
+      "source": "EIA",
+      "lien": "https://www.eia.gov/outlooks/steo/",
+      "sous_secteurs": [
+        "Exploration-production",
+        "Pétrolières intégrées"
+      ],
+      "pourquoi": "Prévision du Brent pour 2027, reprise sur la page Marchés."
+    },
+    {
+      "id": "wasde",
+      "nom": "Offre et demande agricoles mondiales (WASDE)",
+      "secteur": "Agriculture",
+      "frequence": "Mensuel",
+      "source": "USDA",
+      "lien": "https://www.usda.gov/oce/commodity/wasde",
+      "pourquoi": "Stocks de maïs et de soja : prix du grain, donc volumes du négoce, demande d'engrais et budgets phytos.",
+      "sous_secteurs": [
+        "Négoce et transformation",
+        "Engrais",
+        "Semences et phyto"
+      ]
+    },
+    {
+      "id": "pmi-chine",
+      "nom": "PMI manufacturier chinois (officiel)",
+      "secteur": "Métaux",
+      "frequence": "Mensuel",
+      "approx": "dernier jour du mois",
+      "source": "Bureau national des statistiques de Chine",
+      "pourquoi": "Activité industrielle chinoise : demande de métaux.",
+      "sous_secteurs": [
+        "Cuivre",
+        "Mines diversifiées et fer"
+      ]
+    },
+    {
+      "id": "douanes-chine",
+      "nom": "Importations chinoises (minerai de fer, cuivre, soja)",
+      "secteur": "Métaux",
+      "frequence": "Mensuel",
+      "approx": "vers le 7-10 du mois",
+      "source": "Douanes chinoises",
+      "pourquoi": "Importations de minerai de fer, de cuivre et de soja.",
+      "sous_secteurs": [
+        "Mines diversifiées et fer",
+        "Cuivre",
+        "Négoce et transformation"
+      ]
+    },
+    {
+      "id": "acier-chine",
+      "nom": "Production d'acier chinoise",
+      "secteur": "Métaux",
+      "frequence": "Mensuel",
+      "approx": "vers le 15 du mois",
+      "source": "Bureau national des statistiques de Chine",
+      "pourquoi": "Production d'acier chinoise : demande de minerai de fer et pression sur les prix mondiaux de l'acier.",
+      "sous_secteurs": [
+        "Mines diversifiées et fer",
+        "Acier"
+      ]
+    },
+    {
+      "id": "logement-us",
+      "nom": "Mises en chantier US",
+      "secteur": "Agriculture",
+      "frequence": "Mensuel",
+      "source": "Census Bureau",
+      "lien": "https://www.census.gov/construction/nrc/index.html",
+      "pourquoi": "Demande de bois d'œuvre : une reprise des mises en chantier contredirait l'avis.",
+      "heure": "14:30",
+      "sous_secteurs": [
+        "Papier, bois et forêts"
+      ]
+    },
+    {
+      "id": "engrais",
+      "nom": "Prix des engrais (urée, DAP, potasse)",
+      "secteur": "Agriculture",
+      "frequence": "Mensuel",
+      "approx": "début de mois (Pink Sheet)",
+      "source": "Banque mondiale, Argus, CRU",
+      "lien": "https://www.worldbank.org/en/research/commodity-markets",
+      "pourquoi": "Urée au-dessus de ~550 $/t = signal pour changer d'avis.",
+      "sous_secteurs": [
+        "Engrais"
+      ]
+    },
+    {
+      "id": "emploi-us",
+      "nom": "Emploi américain (Employment Situation)",
+      "secteur": "Macro",
+      "frequence": "Mensuel",
+      "source": "BLS",
+      "lien": "https://www.bls.gov/schedule/news_release/empSit.htm",
+      "pourquoi": "Pèse sur la décision de la Fed, donc sur le dollar, l'or et les taux longs.",
+      "heure": "14:30",
+      "sous_secteurs": [
+        "Or"
+      ]
+    },
+    {
+      "id": "cpi-us",
+      "nom": "Inflation américaine (CPI)",
+      "secteur": "Macro",
+      "frequence": "Mensuel",
+      "source": "BLS",
+      "lien": "https://www.bls.gov/schedule/news_release/cpi.htm",
+      "pourquoi": "Inflation importée par le diesel ; conditionne la hausse de taux de la Fed.",
+      "heure": "14:30",
+      "sous_secteurs": [
+        "Or"
+      ]
+    },
+    {
+      "id": "pib-us",
+      "nom": "Croissance américaine (PIB)",
+      "secteur": "Macro",
+      "frequence": "Trimestriel",
+      "heure": "14:30",
+      "source": "BEA",
+      "lien": "https://www.bea.gov/data/gdp/gross-domestic-product",
+      "pourquoi": "Rythme de l'économie américaine : demande d'énergie et de métaux, décisions de la Fed.",
+      "sous_secteurs": []
+    },
+    {
+      "id": "pce-us",
+      "nom": "Inflation PCE et dépenses des ménages",
+      "secteur": "Macro",
+      "frequence": "Mensuel",
+      "heure": "14:30",
+      "source": "BEA",
+      "lien": "https://www.bea.gov/data/personal-consumption-expenditures-price-index",
+      "pourquoi": "L'indicateur d'inflation préféré de la Fed : pèse sur les taux, donc sur l'or et la construction.",
+      "sous_secteurs": [
+        "Or",
+        "Papier, bois et forêts"
+      ]
+    },
+    {
+      "id": "fomc",
+      "nom": "Décision de la Fed (FOMC)",
+      "secteur": "Macro",
+      "frequence": "Ponctuel",
+      "source": "Réserve fédérale",
+      "lien": "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm",
+      "pourquoi": "Hausse d'un quart de point attendue : pèse sur l'or, la construction et soutient le dollar.",
+      "sous_secteurs": [
+        "Or",
+        "Papier, bois et forêts"
+      ]
+    },
+    {
+      "id": "fomc-minutes",
+      "nom": "Compte rendu de la Fed (minutes)",
+      "secteur": "Macro",
+      "frequence": "Ponctuel",
+      "source": "Réserve fédérale",
+      "lien": "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm",
+      "pourquoi": "Détail du débat sur les hausses de taux suivantes.",
+      "sous_secteurs": []
+    },
+    {
+      "id": "beige",
+      "nom": "Beige Book de la Fed",
+      "secteur": "Macro",
+      "frequence": "Ponctuel",
+      "source": "Réserve fédérale",
+      "pourquoi": "État de l'économie régionale américaine, dont la construction et l'énergie.",
+      "sous_secteurs": []
+    },
+    {
+      "id": "bce",
+      "nom": "Décision de la BCE",
+      "secteur": "Macro",
+      "frequence": "Ponctuel",
+      "source": "Banque centrale européenne",
+      "lien": "https://www.ecb.europa.eu/press/calendars/mgcgc/html/index.en.html",
+      "pourquoi": "Nouvelles projections jusqu'en 2028 ; euro face au dollar pour les valeurs européennes.",
+      "sous_secteurs": []
+    },
+    {
+      "id": "resultats",
+      "nom": "Résultats annuels des sociétés (T4 2026)",
+      "secteur": "Transversal",
+      "frequence": "Trimestriel",
+      "approx": "fin janvier à fin février",
+      "source": "Sociétés",
+      "pourquoi": "Guidances 2027 : capex des pétrolières, volumes d'engrais, marges de trituration.",
+      "sous_secteurs": []
+    }
+  ],
+  "dates": [
+    {
+      "id": "beige",
+      "date": "2026-11-25",
+      "heure": "20:00"
+    },
+    {
+      "id": "opecplus",
+      "date": "2026-11-29",
+      "note": "Cadre de production 2027"
+    },
+    {
+      "id": "emploi-us",
+      "date": "2026-12-04",
+      "heure": "14:30",
+      "note": "Novembre"
+    },
+    {
+      "id": "steo",
+      "date": "2026-12-08",
+      "heure": "18:00"
+    },
+    {
+      "id": "fomc",
+      "date": "2026-12-09",
+      "heure": "20:00",
+      "note": "Réunion des 8-9 décembre, avec projections"
+    },
+    {
+      "id": "cpi-us",
+      "date": "2026-12-10",
+      "heure": "14:30",
+      "note": "Novembre"
+    },
+    {
+      "id": "wasde",
+      "date": "2026-12-10",
+      "heure": "18:00"
+    },
+    {
+      "id": "omr",
+      "date": "2026-12-11",
+      "heure": "10:00"
+    },
+    {
+      "id": "momr",
+      "date": "2026-12-14",
+      "heure": "≈ 14:00"
+    },
+    {
+      "id": "bce",
+      "date": "2026-12-17",
+      "heure": "14:15",
+      "note": "Avec projections"
+    },
+    {
+      "id": "fomc-minutes",
+      "date": "2026-12-30",
+      "heure": "20:00",
+      "note": "Réunion des 8-9 décembre"
+    },
+    {
+      "id": "emploi-us",
+      "date": "2027-01-08",
+      "heure": "14:30",
+      "note": "Décembre"
+    },
+    {
+      "id": "cpi-us",
+      "date": "2027-01-13",
+      "heure": "14:30",
+      "note": "Décembre"
+    },
+    {
+      "id": "beige",
+      "date": "2027-01-13",
+      "heure": "20:00"
+    }
+  ]
+}
