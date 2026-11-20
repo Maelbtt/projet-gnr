@@ -207,6 +207,15 @@ def publier(hist, actions, cash, cours, ind, info_semaine):
         rics = ind.index[ind.secteur == s]
         sect.append({"secteur": s, "poids_portefeuille": float(w_p.reindex(rics).fillna(0).sum()),
                      "poids_indice": float(w_b.reindex(rics).fillna(0).sum())})
+    # sous-secteurs et active share (pour le contrôle des risques)
+    sous = []
+    for ss in sorted(ind.sous_secteur.dropna().unique()):
+        rics = ind.index[ind.sous_secteur == ss]
+        sous.append({"sous_secteur": ss, "secteur": ind.secteur[rics[0]],
+                     "poids_portefeuille": float(w_p.reindex(rics).fillna(0).sum()),
+                     "poids_indice": float(w_b.reindex(rics).fillna(0).sum())})
+    tous = w_p.index.union(w_b.index)
+    active_share = float(0.5 * (w_p.reindex(tous).fillna(0) - w_b.reindex(tous).fillna(0)).abs().sum())
     lignes = pd.DataFrame({"poids_portefeuille": w_p, "poids_indice": w_b.reindex(w_p.index).fillna(0)})
     lignes["ecart"] = lignes.poids_portefeuille - lignes.poids_indice
     lignes = lignes.sort_values("poids_portefeuille", ascending=False)
@@ -225,8 +234,10 @@ def publier(hist, actions, cash, cours, ind, info_semaine):
         "nb_lignes": int((w_p > 0).sum()),
         "cash": float(cash / v),
         "secteurs": sect,
-        "positions": [{"nom": noms.get(r, r), "secteur": ind.secteur.get(r, ""), "poids_portefeuille": float(x.poids_portefeuille),
-                       "poids_indice": float(x.poids_indice), "ecart": float(x.ecart)} for r, x in lignes.head(15).iterrows()],
+        "sous_secteurs": sous,
+        "active_share": active_share,
+        "positions": [{"nom": noms.get(r, r), "sous_secteur": ind.sous_secteur.get(r, ""), "secteur": ind.secteur.get(r, ""), "poids_portefeuille": float(x.poids_portefeuille),
+                       "poids_indice": float(x.poids_indice), "ecart": float(x.ecart)} for r, x in lignes.iterrows()],
         "risque": indicateurs_risque(h),
         "semaine": info_semaine,
         "methode": "Capital fictif de 10 M$ ; dividendes nets d'une retenue forfaitaire de 15 % ; frais de 10 pb par "
