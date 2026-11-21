@@ -10,7 +10,7 @@ data_brute/   exports LSEG et fichiers SSGA (ignoré par git, jamais publié)
 scripts/      calculs (poids de l'indice, secteurs, données du site)
 docs/         le site public
   data/       JSON produits par les scripts
-  contenu/    textes en markdown (lettres/, hebdo/, secteurs/)
+  contenu/    textes en markdown (lettres/, hebdo/)
 ```
 
 ## Chaque vendredi
