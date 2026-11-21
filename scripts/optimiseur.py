@@ -9,6 +9,8 @@ Méthode (Grinold & Kahn) :
 Contraintes (note de cadrage) :
   - pas de vente à découvert, somme des poids = 100 %
   - ±3 pts de poids actif par titre, ±10 pts par secteur S&P
+  - écarts sectoriels fixés par les avis (cibles_secteur, ±0,5 pt) : les scores choisissent les sociétés dans chaque secteur
+  - 30 à 35 lignes
   - 10 % maximum par ligne et règle 5/10/40
   - seules les valeurs notées peuvent être détenues ; les autres sont à 0 %.
     Une valeur qui pèse plus de 3 % de l'indice doit donc être notée.
@@ -26,13 +28,20 @@ from risque import lire_cours_lseg, rendements, ledoit_wolf, vol_residuelle, ris
 
 PARAM = {
     "ic": 0.05,               # qualité supposée des scores (corrélation scores / surperformance)
-    "te_cible": 0.05,         # écart de suivi ex ante visé : 5 %
+    "te_cible": 0.035,        # écart de suivi ex ante visé : 3,5 % (à 5 %, presque pas plus d alpha attendu)
     "ecart_titre": 0.03,      # ±3 pts
     "ecart_secteur": 0.10,    # ±10 pts
     "max_ligne": 0.10,        # UCITS : 10 % maximum par ligne
     "seuil_5_40": (0.05, 0.40),
     "poids_min_detenu": 0.002,
-    "nb_titres": (35, 45),  # en dessous de 0,2 %, une ligne est considérée comme non détenue
+    "nb_titres": (30, 35),  # en dessous de 0,2 %, une ligne est considérée comme non détenue
+    # Écarts sectoriels décidés à part (avis sectoriels) : les scores ne choisissent plus que les
+    # sociétés à l'intérieur de chaque secteur. None = les secteurs découlent des scores.
+    "cibles_secteur": {"Énergie": -0.02, "Métaux et mines": 0.04, "Agriculture": -0.02},
+    "bande_secteur": 0.005,   # tolérance autour de chaque cible : ±0,5 pt
+    # Une valeur notée -1 ou plus reste en portefeuille (au moins au poids minimal de détention) :
+    # -1 = sous-pondérer, -2 = sortir.
+    "note_min_detenue": None,
 }
 
 
@@ -45,6 +54,8 @@ def optimiser(w_b, cov, alpha, eligibles, secteurs, lam, plafonds_extra=None, p=
     haut = np.where(eligibles, np.minimum(w_b + p["ecart_titre"], p["max_ligne"]), 0.0)
     if plafonds_extra is not None:
         haut = np.minimum(haut, plafonds_extra)
+    if p.get("plancher") is not None:
+        bas = np.where(haut > 0, np.maximum(bas, np.minimum(p["plancher"], haut)), bas)
     s = cov.values
     a = alpha.values
 
@@ -62,6 +73,10 @@ def optimiser(w_b, cov, alpha, eligibles, secteurs, lam, plafonds_extra=None, p=
         cible = m @ w_b
         cons.append({"type": "ineq", "fun": lambda w, m=m, c=cible: p["ecart_secteur"] - (m @ w - c), "jac": lambda w, m=m: -m})
         cons.append({"type": "ineq", "fun": lambda w, m=m, c=cible: p["ecart_secteur"] + (m @ w - c), "jac": lambda w, m=m: m})
+        if p.get("cibles_secteur") and sec in p["cibles_secteur"]:
+            c2, b = cible + p["cibles_secteur"][sec], p["bande_secteur"]
+            cons.append({"type": "ineq", "fun": lambda w, m=m, c=c2, b=b: b - (m @ w - c), "jac": lambda w, m=m: -m})
+            cons.append({"type": "ineq", "fun": lambda w, m=m, c=c2, b=b: b + (m @ w - c), "jac": lambda w, m=m: m})
 
     x0 = np.clip(w_b, bas, haut)
     x0 = x0 / x0.sum()
@@ -102,6 +117,8 @@ def construire(w_b, cov, scores, secteurs, p=PARAM):
     trop_gros = w_b.index[(~eligibles) & (w_b.values > p["ecart_titre"])].tolist()
     if trop_gros:
         raise ValueError("Ces valeurs pèsent plus de 3 % de l'indice et doivent être notées : " + ", ".join(trop_gros))
+    if p.get("note_min_detenue") is not None:
+        p = dict(p, plancher=np.where(scores.fillna(-99).values >= p["note_min_detenue"], p["poids_min_detenu"], 0.0))
     sigma_res, _ = vol_residuelle(cov, w_b.values)
     alpha = p["ic"] * sigma_res * standardiser(scores).fillna(0.0)
 
