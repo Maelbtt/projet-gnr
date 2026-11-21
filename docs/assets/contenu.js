@@ -25,7 +25,7 @@ fetch("contenu/index.json")
   .then((r) => r.json())
   .then((idx) => {
     const items = idx[rubrique] || [];
-    if (!items.length) { article.innerHTML = '<p class="placeholder">Rien de publié pour l\'instant.</p>'; return; }
+    if (!items.length) { article.innerHTML = '<p class="placeholder">' + (rubrique === "lettres" ? "La première lettre paraîtra début décembre." : "Rien de publié pour l\'instant.") + '</p>'; return; }
     liste.innerHTML = items.map((it) => `<a href="#" data-f="${it.fichier}">${it.titre}</a>`).join("");
     liste.querySelectorAll("a").forEach((a, i) =>
       a.addEventListener("click", (ev) => { ev.preventDefault(); afficher(items[i]); }));

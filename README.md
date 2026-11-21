@@ -104,7 +104,7 @@ il contient le niveau de l'indice LSEG) : **le sauvegarder** (copie sur un cloud
 
 Modèle : `modeles/lettre-mensuelle.md` (mise en page bordeaux : couverture, l'essentiel, chiffres du mois, trois encadrés
 marchés, tableau des convictions, commentaire de gestion, focus, ESG, mois prochain, mentions).
-1. Copier le modèle dans `docs/contenu/lettres/AAAA-MM-lettre-NN.md` et remplacer les crochets.
+1. Copier le modèle dans `docs/contenu/lettres/AAAA-MM-lettre-NN.md` et remplacer les crochets (le brouillon de la lettre n°1 est dans `brouillons/lettres/`, hors du site).
 2. Ajouter la lettre en tête de la liste `lettres` de `docs/contenu/index.json`.
 3. Commit, Push. L'Action « PDF des lettres » génère le PDF A4 de chaque lettre (même nom, en .pdf) en 2 minutes
    environ ; le bouton « Télécharger en PDF » de la page Lettre mensuelle apparaît alors.
