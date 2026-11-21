@@ -106,8 +106,8 @@ Modèle : `modeles/lettre-mensuelle.md` (mise en page bordeaux : couverture, l'e
 marchés, tableau des convictions, commentaire de gestion, focus, ESG, mois prochain, mentions).
 1. Copier le modèle dans `docs/contenu/lettres/AAAA-MM-lettre-NN.md` et remplacer les crochets.
 2. Ajouter la lettre en tête de la liste `lettres` de `docs/contenu/index.json`.
-3. Commit, Push. Sur la page Lettre mensuelle, le bouton « Télécharger en PDF » donne la version A4
-   (dans la fenêtre d'impression : destination « Enregistrer au format PDF », cocher « Graphiques d'arrière-plan »).
+3. Commit, Push. L'Action « PDF des lettres » génère le PDF A4 de chaque lettre (même nom, en .pdf) en 2 minutes
+   environ ; le bouton « Télécharger en PDF » de la page Lettre mensuelle apparaît alors.
 
 ## Indicateurs de marché (FRED + EIA, automatique)
 

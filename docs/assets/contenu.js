@@ -11,6 +11,13 @@ function afficher(item) {
       article.innerHTML = marked.parse(md);
       liste.querySelectorAll("a").forEach((a) => a.setAttribute("aria-current", a.dataset.f === item.fichier));
       history.replaceState(null, "", "#" + item.fichier.split("/").pop().replace(".md", ""));
+      // Lettres : bouton de téléchargement si le PDF généré par l'Action existe
+      const lien = document.getElementById("lien-pdf");
+      if (lien) {
+        const pdf = item.fichier.replace(/\.md$/, ".pdf");
+        lien.hidden = true;
+        fetch(pdf, { method: "HEAD" }).then((r) => { if (r.ok) { lien.href = pdf; lien.hidden = false; } }).catch(() => {});
+      }
     });
 }
 
