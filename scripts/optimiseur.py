@@ -201,6 +201,13 @@ if __name__ == "__main__":
     if exclues:
         print("Historique insuffisant : gardées à leur poids d'indice, hors optimisation :", exclues)
     w_b_tot = ind.poids_3110 / 100
+    # Poids de l'indice dérivés du 31/10 jusqu'à la dernière date de l'export, avec les cours :
+    # l'optimisation part des poids du jour, pas de ceux d'il y a un mois.
+    base = cours.loc[:"2026-10-31"]
+    if len(base) and cours.index[-1] > base.index[-1]:
+        rel = (cours.iloc[-1] / base.iloc[-1]).reindex(w_b_tot.index).fillna(1.0)
+        w_b_tot = w_b_tot * rel / (w_b_tot * rel).sum()
+        print(f"Poids de l'indice dérivés du 31/10 au {cours.index[-1].date()} avec les cours.")
     fixe = w_b_tot[exclues].sum()          # valeurs sans historique : gardées à leur poids d'indice
     w_b = w_b_tot[univers] / w_b_tot[univers].sum()
     cov, delta = ledoit_wolf(r[univers], periodes_an=52 if frequence == "hebdo" else 252)
