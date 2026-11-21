@@ -1,5 +1,5 @@
 // Pages Lettres / Hebdo / Secteurs : liste les .md de la rubrique et affiche celui choisi.
-// La rubrique est donnée par <body data-rubrique="lettres|hebdo|secteurs">.
+// La rubrique est donnée par <body data-rubrique="lettres|hebdo">.
 const rubrique = document.body.dataset.rubrique;
 const liste = document.getElementById("liste");
 const article = document.getElementById("article");

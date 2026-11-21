@@ -5,19 +5,5 @@
    "fichier": "contenu/hebdo/2026-11-30-semaine-01.md",
    "titre": "Semaine du 30 novembre 2026"
   }
- ],
- "secteurs": [
-  {
-   "fichier": "contenu/secteurs/1-energie.md",
-   "titre": "Énergie"
-  },
-  {
-   "fichier": "contenu/secteurs/2-agriculture.md",
-   "titre": "Agriculture"
-  },
-  {
-   "fichier": "contenu/secteurs/3-metaux.md",
-   "titre": "Métaux et mines"
-  }
  ]
 }
