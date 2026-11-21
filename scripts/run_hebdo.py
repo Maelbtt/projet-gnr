@@ -70,9 +70,12 @@ def lire_dividendes(chemin):
     cols = {c.lower(): c for c in df.columns}
     c_ric = next((cols[k] for k in cols if k.startswith("updated at") or k == "instrument"),
                  next(cols[k] for k in cols if k == "ric"))
-    c_date = next(cols[k] for k in cols if "date" in k and "updated" not in k)
+    # La liste de RIC collée à côté peut contenir « Local Currency » : on privilégie les colonnes du dividende.
+    c_date = next((cols[k] for k in cols if "ex" in k and "date" in k),
+                  next(cols[k] for k in cols if "date" in k and "updated" not in k))
     c_mt = next(cols[k] for k in cols if "amount" in k or "gross" in k or "montant" in k)
-    c_dev = next((cols[k] for k in cols if "curr" in k or "devise" in k), None)
+    c_dev = next((cols[k] for k in cols if "div" in k and "curr" in k),
+                 next((cols[k] for k in cols if ("curr" in k and "local" not in k) or "devise" in k), None))
     df[c_ric] = df[c_ric].ffill()
     out = pd.DataFrame({
         "ric": df[c_ric],
