@@ -41,6 +41,10 @@ FRED = [
      "lien_avis": "Bois (−) : une reprise contredirait l'avis", "decimales": 0},
     {"id": "PCOPPUSDM", "nom": "Cuivre (moyenne mensuelle)", "unite": "$/t", "secteur": "Métaux",
      "lien_avis": "Cuivre (+) : déficit d'offre", "decimales": 0},
+    {"id": "WALCL", "nom": "Bilan de la Fed (total de l'actif)", "unite": "Md$", "secteur": "Macro",
+     "lien_avis": "Or : un bilan qui remonte durablement = plus de liquidités", "decimales": 0, "echelle": 0.001},
+    {"id": "RPONTTLD", "nom": "Prêts de la Fed en repo (au jour le jour)", "unite": "Md$", "secteur": "Macro",
+     "lien_avis": "Or : des recours répétés signalent des liquidités rares", "decimales": 1, "agreg": "max"},
 ]
 EIA = [
     {"id": "WDISTUS1", "nom": "Stocks de distillats US", "unite": "millions de barils", "secteur": "Énergie",
@@ -115,7 +119,14 @@ def resumer(meta, points, source):
     ref = avant[-1] if avant else points[-2] if len(points) > 1 else None
     debut_histo = fin - dt.timedelta(days=HISTO_JOURS)
     histo = [(d, round(v, 4)) for d, v in points if dt.date.fromisoformat(d) >= debut_histo]
-    if len(histo) > 120:  # séries quotidiennes : un point par semaine suffit pour une mini-courbe
+    if meta.get("agreg") == "max":  # repo : garder le plus haut de chaque semaine, sinon les pics disparaissent
+        semaines = {}
+        for d, v in histo:
+            k = dt.date.fromisoformat(d).isocalendar()[:2]
+            if k not in semaines or v > semaines[k][1]:
+                semaines[k] = (d, v)
+        histo = sorted(semaines.values())
+    elif len(histo) > 120:  # séries quotidiennes : un point par semaine suffit pour une mini-courbe
         pas = len(histo) // 60
         histo = histo[::pas] + ([histo[-1]] if histo[-1] != histo[::pas][-1] else [])
     out = {
