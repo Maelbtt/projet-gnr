@@ -5,6 +5,7 @@ on:
   push:
     paths:
       - "docs/contenu/lettres/**.md"
+      - "docs/contenu/hebdo/**.md"
       - "docs/contenu/index.json"
       - "docs/assets/style.css"
   workflow_dispatch:
@@ -30,7 +31,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
-          git add docs/contenu/lettres/*.pdf
+          git add docs/contenu/lettres/ docs/contenu/hebdo/
           git diff --cached --quiet && exit 0
           git commit -m "PDF des lettres : mise à jour automatique"
           for essai in 1 2 3; do

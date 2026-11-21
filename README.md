@@ -132,3 +132,10 @@ Onglet Actions → « Indicateurs de marché » → Run workflow pour le lancer 
 L'Action enregistre elle-même `docs/data/marches.json` : faire `git pull` avant de travailler.
 
 Portefeuille fictif, à but pédagogique. Données : LSEG Workspace, usage académique.
+
+## Lettre hebdo
+
+Modèle : `modeles/lettre-hebdo.md`. Le brouillon de la semaine est dans `brouillons/hebdo/`.
+1. Remplir le brouillon, puis le copier dans `docs/contenu/hebdo/` (nom : `AAAA-MM-JJ-hebdo-NN.md`, date du lundi).
+2. L'ajouter en tête de la liste `hebdo` de `docs/contenu/index.json`, puis Commit et Push.
+3. L'Action « PDF des lettres » génère le PDF. Sur la page Hebdo, « Copier pour LinkedIn » donne le texte du post.

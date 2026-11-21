@@ -21,7 +21,8 @@ class Silencieux(http.server.SimpleHTTPRequestHandler):
 
 
 def main():
-    lettres = json.loads((DOCS / "contenu" / "index.json").read_text(encoding="utf-8")).get("lettres", [])
+    index = json.loads((DOCS / "contenu" / "index.json").read_text(encoding="utf-8"))
+    lettres = [(l, "lettres") for l in index.get("lettres", [])] + [(l, "hebdo") for l in index.get("hebdo", [])]
     handler = functools.partial(Silencieux, directory=str(DOCS))
     serveur = http.server.ThreadingHTTPServer(("127.0.0.1", 0), handler)
     port = serveur.server_address[1]
@@ -29,10 +30,10 @@ def main():
     with sync_playwright() as p:
         nav = p.chromium.launch()
         page = nav.new_page()
-        for l in lettres:
+        for l, rub in lettres:
             md = DOCS / l["fichier"]
             pdf = md.with_suffix(".pdf")
-            page.goto(f"http://127.0.0.1:{port}/lettres.html#{md.stem}")
+            page.goto(f"http://127.0.0.1:{port}/{rub}.html#{md.stem}")
             page.wait_for_function("document.querySelector('#article').children.length > 0")
             page.wait_for_timeout(300)
             page.emulate_media(media="print")

@@ -236,7 +236,7 @@ article.md table strong { color: var(--bordeaux); }
 article.md .focus { background: var(--surface-0); padding: 2px 22px 10px; margin: 26px 0; }
 article.md .focus h2 { margin-top: 16px; }
 article.md .mentions { border-top: 1px solid var(--border); margin-top: 30px; padding-top: 10px; font-size: .76rem; color: var(--text-muted); line-height: 1.5; }
-.lettre-outils { display: flex; justify-content: flex-end; margin: 0 0 10px; }
+.lettre-outils { display: flex; justify-content: flex-end; gap: 8px; margin: 0 0 10px; }
 @media (max-width: 760px) {
   article.md .encadres { grid-template-columns: 1fr; }
   article.md .chiffres-mois { grid-template-columns: 1fr 1fr; }
@@ -257,5 +257,9 @@ article.md .mentions { border-top: 1px solid var(--border); margin-top: 30px; pa
   a { color: inherit; text-decoration: none; }
 }
 body[data-rubrique="lettres"] article.md table tr:has(td strong) td { background: var(--surface-0); }
-a.bouton { font-size: .85rem; padding: 5px 12px; border-radius: 3px; border: 1px solid var(--bordeaux); color: var(--bordeaux); text-decoration: none; }
-a.bouton:hover { background: var(--bordeaux); color: #fff; }
+a.bouton, button.bouton { font-family: inherit; background: none; cursor: pointer; font-size: .85rem; padding: 5px 12px; border-radius: 3px; border: 1px solid var(--bordeaux); color: var(--bordeaux); text-decoration: none; }
+a.bouton:hover, button.bouton:hover { background: var(--bordeaux); color: #fff; }
+body[data-rubrique="hebdo"] article.md table { font-size: .86rem; }
+body[data-rubrique="hebdo"] article.md table td:first-child { white-space: nowrap; }
+body[data-rubrique="hebdo"] article.md table td:nth-child(2) { white-space: nowrap; color: var(--text-muted); }
+body[data-rubrique="hebdo"] article.md h3 { color: var(--bordeaux); }
