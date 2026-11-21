@@ -100,6 +100,15 @@ transaction, exécution à la clôture du vendredi. L'état du portefeuille est 
 il contient le niveau de l'indice LSEG) : **le sauvegarder** (copie sur un cloud). Le site lit
 `docs/data/performance.json`, qui ne contient que des résultats (base 100, poids, contributions).
 
+## Lettre mensuelle
+
+Modèle : `modeles/lettre-mensuelle.md` (mise en page bordeaux : couverture, l'essentiel, chiffres du mois, trois encadrés
+marchés, tableau des convictions, commentaire de gestion, focus, ESG, mois prochain, mentions).
+1. Copier le modèle dans `docs/contenu/lettres/AAAA-MM-lettre-NN.md` et remplacer les crochets.
+2. Ajouter la lettre en tête de la liste `lettres` de `docs/contenu/index.json`.
+3. Commit, Push. Sur la page Lettre mensuelle, le bouton « Télécharger en PDF » donne la version A4
+   (dans la fenêtre d'impression : destination « Enregistrer au format PDF », cocher « Graphiques d'arrière-plan »).
+
 ## Indicateurs de marché (FRED + EIA, automatique)
 
 `scripts/marches.py` récupère le Brent, le taux réel 10 ans, le dollar, le taux immobilier 30 ans,
