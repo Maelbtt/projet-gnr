@@ -5,3 +5,6 @@ __pycache__/
 
 # État du portefeuille : contient le niveau de l'indice LSEG (non publiable). À sauvegarder ailleurs.
 portefeuille/
+
+# Rapports LSEG (licence : ne pas publier)
+public_info_book/
