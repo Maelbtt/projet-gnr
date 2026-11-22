@@ -20,7 +20,7 @@
     const graduations = [0, 1, 2, 3, 4].map((k) => min + k * pas);
     const nbx = Math.min(6, h.length);
     const ix = [...new Set(Array.from({ length: nbx }, (_, k) => Math.round((k * (h.length - 1)) / Math.max(nbx - 1, 1))))];
-    return `<svg width="${W}" height="${H}" role="img" aria-label="Portefeuille et indice en base 100 depuis le lancement">
+    return `<svg width="${W}" height="${H}" role="img" aria-label="Portefeuille et indice en base 100 sur la période choisie">
       ${graduations.map((v) => `<line x1="${g}" x2="${W - d}" y1="${y(v)}" y2="${y(v)}" stroke="var(--grid)"/>
         <text x="${g - 6}" y="${y(v) + 4}" text-anchor="end" font-size="11" fill="var(--text-muted)">${nf(v, 1)}</text>`).join("")}
       ${ix.map((i, k) => `<text x="${x(i)}" y="${H - 8}" text-anchor="${k === 0 ? "start" : k === ix.length - 1 ? "end" : "middle"}" font-size="11" fill="var(--text-muted)">${court(h[i][0])}</text>`).join("")}
@@ -34,7 +34,26 @@
   fetch("data/performance.json")
     .then((r) => { if (!r.ok) throw new Error(); return r.json(); })
     .then((p) => {
-      const h = p.historique;
+      const H0 = p.historique;
+      const fin = lire(H0[H0.length - 1][0]);
+      const PERIODES = [["sem", "1 sem."], ["mois", "1 mois"], ["trim", "3 mois"], ["tout", "Depuis le lancement"]];
+      const debutPeriode = (k) => {
+        if (k === "tout") return lire(H0[0][0]);
+        const d = new Date(fin);
+        if (k === "sem") d.setDate(d.getDate() - 7); else d.setMonth(d.getMonth() - (k === "mois" ? 1 : 3));
+        return d;
+      };
+      // une période n'est proposée que si l'historique remonte assez loin
+      const dispo = (k) => k === "tout" || lire(H0[0][0]) <= debutPeriode(k);
+      // on part du dernier point disponible à la date de début, rebasé à 100
+      const fenetre = (k) => {
+        const d0 = debutPeriode(k);
+        let i0 = 0;
+        H0.forEach((q, i) => { if (lire(q[0]) <= d0) i0 = i; });
+        const t = H0.slice(i0), b1 = t[0][1], b2 = t[0][2];
+        return k === "tout" ? t : t.map((q) => [q[0], (100 * q[1]) / b1, (100 * q[2]) / b2]);
+      };
+      let periode = "tout", h = fenetre(periode);
       const lp = p.performances.lancement;
       // bandeau
       const vl = document.getElementById("b-vl"), rel = document.getElementById("b-rel");
@@ -42,12 +61,17 @@
       if (rel) rel.textContent = pct(lp.ecart);
       const lignes = [["Semaine", p.performances.semaine], ["Un mois", p.performances.mois], ["Depuis le lancement", lp]];
       zone.innerHTML = `
-        <div class="legend"><span><i style="background:var(--bordeaux)"></i>Portefeuille</span><span><i style="background:#A99DA6"></i>Indice (Net TR, USD)</span></div>
+        <div class="perf-entete">
+          <div class="legend"><span><i style="background:var(--bordeaux)"></i>Portefeuille</span><span><i style="background:#A99DA6"></i>Indice (Net TR, USD)</span></div>
+          <div class="periodes" role="group" aria-label="Période du graphique">
+            ${PERIODES.map(([k, nom]) => `<button type="button" data-p="${k}"${k === periode ? ' aria-pressed="true"' : ""}${dispo(k) ? "" : " disabled"}>${nom}</button>`).join("")}
+          </div>
+        </div>
         <div id="perf-graphe"></div>
         <table class="perf-table"><thead><tr><th></th><th class="num">Portefeuille</th><th class="num">Indice</th><th class="num">Écart</th></tr></thead><tbody>
         ${lignes.map(([nom, x]) => `<tr><td>${nom}<small>depuis le ${court(x.depuis)}</small></td><td class="num">${pct(x.portefeuille)}</td><td class="num">${pct(x.indice)}</td><td class="num"><b>${pct(x.ecart)}</b></td></tr>`).join("")}
         </tbody></table>
-        <p class="note">Valeurs au ${court(p.maj)} ; base 100 au ${court(p.lancement)}. ${p.methode}</p>`;
+        <p class="note">Valeurs au ${court(p.maj)} ; base 100 au ${court(p.lancement)}, ou au début de la période choisie sur le graphique. ${p.methode}</p>`;
       const box = document.getElementById("perf-graphe");
       const dessiner = () => {
         box.innerHTML = graphique(h);
@@ -65,6 +89,12 @@
         zoneSvg.addEventListener("mouseleave", () => { tip.style.display = "none"; curseur.setAttribute("visibility", "hidden"); });
       };
       dessiner();
+      zone.querySelectorAll(".periodes button").forEach((b) => b.addEventListener("click", () => {
+        periode = b.dataset.p; h = fenetre(periode);
+        zone.querySelectorAll(".periodes button").forEach((x) => x.removeAttribute("aria-pressed"));
+        b.setAttribute("aria-pressed", "true");
+        dessiner();
+      }));
       window.addEventListener("resize", dessiner);
     })
     .catch(() => {
