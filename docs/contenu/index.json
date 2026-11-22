@@ -1,4 +1,9 @@
 {
  "lettres": [],
- "hebdo": []
+ "hebdo": [
+  {
+   "fichier": "contenu/hebdo/2026-11-23-hebdo-01.md",
+   "titre": "Semaine du 23 novembre 2026"
+  }
+ ]
 }
