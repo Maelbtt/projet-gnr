@@ -37,7 +37,7 @@ PARAM = {
     "nb_titres": (30, 35),  # en dessous de 0,2 %, une ligne est considérée comme non détenue
     # Écarts sectoriels décidés à part (avis sectoriels) : les scores ne choisissent plus que les
     # sociétés à l'intérieur de chaque secteur. None = les secteurs découlent des scores.
-    "cibles_secteur": {"Énergie": -0.02, "Métaux et mines": 0.04, "Agriculture": -0.02},
+    "cibles_secteur": {"Énergie": 0.01, "Métaux et mines": -0.02, "Agriculture": 0.01},
     "bande_secteur": 0.005,   # tolérance autour de chaque cible : ±0,5 pt
     # Une valeur notée -1 ou plus reste en portefeuille (au moins au poids minimal de détention) :
     # -1 = sous-pondérer, -2 = sortir.
