@@ -42,6 +42,7 @@ docs/         le site public
      un 0 devient « sous la moyenne de tes convictions » et a de bonnes chances de tomber à 0 %.
    - Les valeurs marquées « oui » (plus de 3 % de l'indice) doivent obligatoirement être notées.
    - Pour détenir 30 à 35 titres, il faut noter environ 50 à 55 valeurs : les scores négatifs et une partie des 0 finissent à 0 %. Les écarts sectoriels sont fixés dans `cibles_secteur` (en haut de `optimiseur.py`), les scores choisissent les sociétés dans chaque secteur.
+   - Une valeur notée +1 ou +2 n'est jamais sous-pondérée de plus d'1 point par rapport à l'indice (`sous_ponderation_max_note_positive`) : une grosse capitalisation bien notée reste proche de son poids indiciel au lieu de servir de source de financement.
 3. Lancer :
    ```
    cd scripts

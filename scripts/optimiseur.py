@@ -42,6 +42,9 @@ PARAM = {
     # Une valeur notée -1 ou plus reste en portefeuille (au moins au poids minimal de détention) :
     # -1 = sous-pondérer, -2 = sortir.
     "note_min_detenue": None,
+    # Une valeur notée +1 ou +2 n'est pas sous-pondérée de plus de 1 pt : l'optimiseur ne
+    # « finance » pas les +2 en vidant une valeur qu'on aime.
+    "sous_ponderation_max_note_positive": 0.01,
 }
 
 
@@ -117,8 +120,14 @@ def construire(w_b, cov, scores, secteurs, p=PARAM):
     trop_gros = w_b.index[(~eligibles) & (w_b.values > p["ecart_titre"])].tolist()
     if trop_gros:
         raise ValueError("Ces valeurs pèsent plus de 3 % de l'indice et doivent être notées : " + ", ".join(trop_gros))
+    plancher = np.zeros(len(w_b))
     if p.get("note_min_detenue") is not None:
-        p = dict(p, plancher=np.where(scores.fillna(-99).values >= p["note_min_detenue"], p["poids_min_detenu"], 0.0))
+        plancher = np.where(scores.fillna(-99).values >= p["note_min_detenue"], p["poids_min_detenu"], 0.0)
+    if p.get("sous_ponderation_max_note_positive") is not None:
+        plancher = np.maximum(plancher, np.where(scores.fillna(-99).values >= 1,
+                                                 np.asarray(w_b) - p["sous_ponderation_max_note_positive"], 0.0))
+    if plancher.any():
+        p = dict(p, plancher=plancher)
     sigma_res, _ = vol_residuelle(cov, w_b.values)
     alpha = p["ic"] * sigma_res * standardiser(scores).fillna(0.0)
 
