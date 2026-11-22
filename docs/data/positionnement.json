@@ -1,5 +1,5 @@
 {
- "date": "2026-11-22",
+ "date": "2026-11-23",
  "secteurs": [
   {
    "nom": "Énergie",
@@ -7,7 +7,7 @@
   },
   {
    "nom": "Métaux et mines",
-   "these": "Or et mines diversifiées plutôt que cuivre : la demande ralentit avec les data centers, l'or reste soutenu par les banques centrales."
+   "these": "Or plutôt que cuivre : la demande ralentit avec les data centers, l'or reste soutenu par les banques centrales. Mines diversifiées neutres : le minerai de fer reste faible tant que la production d'acier chinoise baisse et que Simandou monte en puissance."
   },
   {
    "nom": "Agriculture",
@@ -20,7 +20,7 @@
   "Raffinage": 1,
   "Services pétroliers": 0,
   "Uranium": -1,
-  "Mines diversifiées et fer": 1,
+  "Mines diversifiées et fer": 0,
   "Or": 1,
   "Acier": 0,
   "Cuivre": -1,
