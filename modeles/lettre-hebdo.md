@@ -3,7 +3,6 @@ MODÈLE DE LA LETTRE HEBDO (publiée le dimanche soir ou le lundi matin)
 1. Copie ce fichier dans docs/contenu/hebdo/ sous le nom AAAA-MM-JJ-hebdo-NN.md (date du lundi, ex. 2026-11-23-hebdo-01.md).
 2. Remplace tout ce qui est entre crochets [ ]. Supprime les lignes de l'agenda qui ne servent pas.
 3. Ajoute la lettre en tête de la liste "hebdo" de docs/contenu/index.json.
-4. Sur le site, le bouton « Copier pour LinkedIn » donne la version texte à coller dans un post.
 Les blocs <div class="..."> donnent la mise en page : garde une ligne vide après chaque <div ...> et avant chaque </div>.
 Avis : <span class="tag p">+</span> surpondérer · <span class="tag z">=</span> neutre · <span class="tag m">−</span> sous-pondérer
 Consensus : prends-le dans un calendrier public (Investing.com, Boursorama), pas dans les tableaux LSEG.
