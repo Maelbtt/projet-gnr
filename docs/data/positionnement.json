@@ -3,7 +3,7 @@
  "secteurs": [
   {
    "nom": "Énergie",
-   "these": "Raffinage et majors intégrées plutôt que producteurs purs, services et uranium : un brut en excès, mais des carburants qui restent rares."
+   "these": "Raffinage et majors intégrées plutôt que producteurs purs et uranium : un brut en excès, mais des carburants qui restent rares. Services neutres en attendant les budgets 2027."
   },
   {
    "nom": "Métaux et mines",
@@ -18,7 +18,7 @@
   "Pétrolières intégrées": 1,
   "Exploration-production": -1,
   "Raffinage": 1,
-  "Services pétroliers": -1,
+  "Services pétroliers": 0,
   "Uranium": -1,
   "Mines diversifiées et fer": 1,
   "Or": 1,
