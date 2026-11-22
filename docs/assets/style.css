@@ -262,4 +262,4 @@ a.bouton:hover, button.bouton:hover { background: var(--bordeaux); color: #fff; 
 body[data-rubrique="hebdo"] article.md table { font-size: .86rem; }
 body[data-rubrique="hebdo"] article.md table td:first-child { white-space: nowrap; }
 body[data-rubrique="hebdo"] article.md table td:nth-child(2) { white-space: nowrap; color: var(--text-muted); }
-body[data-rubrique="hebdo"] article.md h3 { color: var(--bordeaux); }
+body[data-rubrique="hebdo"] article.md h3 { color: var(--bordeaux); background: var(--surface-0); border-left: 4px solid var(--bordeaux); padding: 6px 12px; margin: 28px 0 8px; font-size: 1.05rem; }
