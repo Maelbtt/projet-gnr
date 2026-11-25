@@ -1,4 +1,14 @@
 {
- "maj": null,
- "actualites": []
+ "maj": "2026-11-25T07:15",
+ "actualites": [
+  {
+   "date": "2026-11-24",
+   "societe": "Freeport-McMoRan",
+   "sous_secteur": "Cuivre",
+   "titre": "L'action Freeport-McMoRan a reculé d'environ 4 % à New York le 24 novembre, dans une séance de baisse du cuivre au LME.",
+   "importance": "moyenne",
+   "source": "The Rio Times",
+   "lien": "https://www.riotimesonline.com/copper-markets-latam-tuesday-november-24-2026/"
+  }
+ ]
 }
