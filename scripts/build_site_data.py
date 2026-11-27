@@ -51,7 +51,8 @@ def nom_affiche(nom):
 
 
 def indice_json(csv, date):
-    w = pd.read_csv(csv, sep=";", decimal=",", encoding="utf-8-sig")
+    """csv : chemin du fichier indice_secteurs ou DataFrame déjà chargé (colonne poids_3110 en %)."""
+    w = csv.copy() if isinstance(csv, pd.DataFrame) else pd.read_csv(csv, sep=";", decimal=",", encoding="utf-8-sig")
     w = w[w.poids_3110 > 0]
     sect = (w.groupby("secteur").agg(poids=("poids_3110", "sum"), n=("RIC", "size"))
               .reindex(ORDRE_SECTEURS).reset_index())

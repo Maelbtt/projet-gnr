@@ -7,6 +7,7 @@ Deux commandes, lancées depuis la racine du projet :
 
   2) Chaque vendredi soir :
      py -3.13 scripts\\run_hebdo.py semaine <cours.csv> <indice_secteurs.csv> [dividendes=dividendes.csv] [poids=nouveaux_poids.csv]
+     py -3.13 scripts\\run_hebdo.py indice <cours.csv> <indice_secteurs.csv>   (page Indice seule, aussi faite par lancer et semaine)
 
   - cours.csv : export LSEG long (une ligne par RIC et par date), cours de clôture quotidiens EN USD
     de toutes les valeurs de l'indice + l'indice .SPGNRUN. Même formule que pour l'optimiseur :
@@ -33,7 +34,7 @@ import pandas as pd
 
 sys.path.insert(0, str(pathlib.Path(__file__).parent))
 from risque import lire_cours_lseg  # noqa: E402
-from build_site_data import nom_affiche  # noqa: E402
+from build_site_data import nom_affiche, indice_json  # noqa: E402
 
 RACINE = pathlib.Path(__file__).resolve().parents[1]
 ETAT = RACINE / "portefeuille"
@@ -247,7 +248,17 @@ def publier(hist, actions, cash, cours, ind, info_semaine):
                    "transaction ; exécution au cours de clôture du vendredi. Indice : S&P Global Natural Resources Net TR (USD).",
     }
     SORTIE.write_text(json.dumps(out, ensure_ascii=False, indent=1, default=float), encoding="utf-8")
+    maj_page_indice(ind, w_b, date)
     return out
+
+
+def maj_page_indice(ind, w_b, date):
+    """Page Indice : poids de l'indice dérivés à la date du dernier cours (pas de cours publiés)."""
+    df = ind.copy()
+    df["poids_3110"] = (w_b.reindex(df.index).fillna(0) * 100).values
+    f = RACINE / "docs" / "data" / "indice.json"
+    f.write_text(json.dumps(indice_json(df.reset_index(), date.strftime("%Y-%m-%d")), ensure_ascii=False, indent=1),
+                 encoding="utf-8")
 
 
 # ------------------------------------------------------------------ commandes
@@ -323,6 +334,13 @@ def semaine(f_cours, f_indice, f_div=None, f_poids=None):
 
 
 if __name__ == "__main__":
+    if len(sys.argv) >= 4 and sys.argv[1] == "indice":
+        # Mise à jour seule de la page Indice : run_hebdo.py indice <cours.csv> <indice_secteurs.csv>
+        c, i = cours_complets(sys.argv[2]), lire_indice(sys.argv[3])
+        d = c.index[-1]
+        maj_page_indice(i, poids_indice_a(i, c, d), d)
+        print(f"Page Indice mise à jour au {d.date()}.")
+        sys.exit(0)
     if len(sys.argv) < 2 or sys.argv[1] not in ("lancer", "semaine"):
         print(__doc__)
         sys.exit(1)
