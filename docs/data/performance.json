@@ -1,0 +1,439 @@
+{
+ "maj": "2026-11-27",
+ "lancement": "2026-11-27",
+ "vl": 100.0,
+ "indice": 100.0,
+ "historique": [
+  [
+   "2026-11-27",
+   100.0,
+   100.0
+  ]
+ ],
+ "performances": {
+  "semaine": {
+   "depuis": "2026-11-27",
+   "portefeuille": 0.0,
+   "indice": 0.0,
+   "ecart": 0.0
+  },
+  "mois": {
+   "depuis": "2026-11-27",
+   "portefeuille": 0.0,
+   "indice": 0.0,
+   "ecart": 0.0
+  },
+  "lancement": {
+   "depuis": "2026-11-27",
+   "portefeuille": 0.0,
+   "indice": 0.0,
+   "ecart": 0.0
+  }
+ },
+ "nb_lignes": 35,
+ "cash": 0.0,
+ "secteurs": [
+  {
+   "secteur": "Énergie",
+   "poids_portefeuille": 0.36498400000000003,
+   "poids_indice": 0.354900515835559
+  },
+  {
+   "secteur": "Métaux et mines",
+   "poids_portefeuille": 0.287313,
+   "poids_indice": 0.3014899257604659
+  },
+  {
+   "secteur": "Agriculture",
+   "poids_portefeuille": 0.347703,
+   "poids_indice": 0.3436095584039752
+  }
+ ],
+ "sous_secteurs": [
+  {
+   "sous_secteur": "Acier",
+   "secteur": "Métaux et mines",
+   "poids_portefeuille": 0.033592,
+   "poids_indice": 0.04325003853025985
+  },
+  {
+   "sous_secteur": "Aluminium",
+   "secteur": "Métaux et mines",
+   "poids_portefeuille": 0.0,
+   "poids_indice": 0.004031286346299208
+  },
+  {
+   "sous_secteur": "Cuivre",
+   "secteur": "Métaux et mines",
+   "poids_portefeuille": 0.0,
+   "poids_indice": 0.03245528218363756
+  },
+  {
+   "sous_secteur": "Emballage",
+   "secteur": "Agriculture",
+   "poids_portefeuille": 0.073893,
+   "poids_indice": 0.06987309581421827
+  },
+  {
+   "sous_secteur": "Engrais",
+   "secteur": "Agriculture",
+   "poids_portefeuille": 0.082302,
+   "poids_indice": 0.08650279502931962
+  },
+  {
+   "sous_secteur": "Exploration-production",
+   "secteur": "Énergie",
+   "poids_portefeuille": 0.012617,
+   "poids_indice": 0.061940181416567514
+  },
+  {
+   "sous_secteur": "Mines diversifiées et fer",
+   "secteur": "Métaux et mines",
+   "poids_portefeuille": 0.086448,
+   "poids_indice": 0.09900027100669061
+  },
+  {
+   "sous_secteur": "Négoce et transformation",
+   "secteur": "Agriculture",
+   "poids_portefeuille": 0.105107,
+   "poids_indice": 0.043166516001023905
+  },
+  {
+   "sous_secteur": "Or",
+   "secteur": "Métaux et mines",
+   "poids_portefeuille": 0.120392,
+   "poids_indice": 0.09533161433523406
+  },
+  {
+   "sous_secteur": "Papier, bois et forêts",
+   "secteur": "Agriculture",
+   "poids_portefeuille": 0.06249299999999999,
+   "poids_indice": 0.11559773688224333
+  },
+  {
+   "sous_secteur": "Pétrolières intégrées",
+   "secteur": "Énergie",
+   "poids_portefeuille": 0.309297,
+   "poids_indice": 0.25163413225716924
+  },
+  {
+   "sous_secteur": "Raffinage",
+   "secteur": "Énergie",
+   "poids_portefeuille": 0.04307,
+   "poids_indice": 0.022675162595718452
+  },
+  {
+   "sous_secteur": "Semences et phyto",
+   "secteur": "Agriculture",
+   "poids_portefeuille": 0.023908,
+   "poids_indice": 0.028469414677170124
+  },
+  {
+   "sous_secteur": "Services pétroliers",
+   "secteur": "Énergie",
+   "poids_portefeuille": 0.0,
+   "poids_indice": 0.013047137265246152
+  },
+  {
+   "sous_secteur": "Streaming métaux précieux",
+   "secteur": "Métaux et mines",
+   "poids_portefeuille": 0.046881,
+   "poids_indice": 0.02742143335834462
+  },
+  {
+   "sous_secteur": "Uranium",
+   "secteur": "Énergie",
+   "poids_portefeuille": 0.0,
+   "poids_indice": 0.005603902300857667
+  }
+ ],
+ "active_share": 0.44305053047474,
+ "positions": [
+  {
+   "nom": "Shell",
+   "sous_secteur": "Pétrolières intégrées",
+   "secteur": "Énergie",
+   "poids_portefeuille": 0.07313900000000001,
+   "poids_indice": 0.05387480400259804,
+   "ecart": 0.01926419599740197
+  },
+  {
+   "nom": "Newmont",
+   "sous_secteur": "Or",
+   "secteur": "Métaux et mines",
+   "poids_portefeuille": 0.052697,
+   "poids_indice": 0.028662405825887586,
+   "ecart": 0.024034594174112415
+  },
+  {
+   "nom": "BP",
+   "sous_secteur": "Pétrolières intégrées",
+   "secteur": "Énergie",
+   "poids_portefeuille": 0.05208599999999999,
+   "poids_indice": 0.022855156300639026,
+   "ecart": 0.029230843699360968
+  },
+  {
+   "nom": "Agnico Eagle",
+   "sous_secteur": "Or",
+   "secteur": "Métaux et mines",
+   "poids_portefeuille": 0.051293,
+   "poids_indice": 0.022061197137018092,
+   "ecart": 0.029231802862981906
+  },
+  {
+   "nom": "TotalEnergies",
+   "sous_secteur": "Pétrolières intégrées",
+   "secteur": "Énergie",
+   "poids_portefeuille": 0.049786000000000004,
+   "poids_indice": 0.036354905483331416,
+   "ecart": 0.013431094516668587
+  },
+  {
+   "nom": "Archer-Daniels-Midland",
+   "sous_secteur": "Négoce et transformation",
+   "secteur": "Agriculture",
+   "poids_portefeuille": 0.045811000000000004,
+   "poids_indice": 0.016566497215024435,
+   "ecart": 0.02924450278497557
+  },
+  {
+   "nom": "Wheaton Precious Metals",
+   "sous_secteur": "Streaming métaux précieux",
+   "secteur": "Métaux et mines",
+   "poids_portefeuille": 0.044112,
+   "poids_indice": 0.014863244340788286,
+   "ecart": 0.029248755659211714
+  },
+  {
+   "nom": "Stora Enso",
+   "sous_secteur": "Papier, bois et forêts",
+   "secteur": "Agriculture",
+   "poids_portefeuille": 0.043812,
+   "poids_indice": 0.014562572197598144,
+   "ecart": 0.029249427802401855
+  },
+  {
+   "nom": "Nutrien",
+   "sous_secteur": "Engrais",
+   "secteur": "Agriculture",
+   "poids_portefeuille": 0.043727,
+   "poids_indice": 0.05181574230776231,
+   "ecart": -0.008088742307762305
+  },
+  {
+   "nom": "Smurfit Westrock",
+   "sous_secteur": "Emballage",
+   "secteur": "Agriculture",
+   "poids_portefeuille": 0.040872,
+   "poids_indice": 0.011615564476316812,
+   "ecart": 0.029256435523683184
+  },
+  {
+   "nom": "ExxonMobil",
+   "sous_secteur": "Pétrolières intégrées",
+   "secteur": "Énergie",
+   "poids_portefeuille": 0.040423,
+   "poids_indice": 0.0502988670481326,
+   "ecart": -0.009875867048132599
+  },
+  {
+   "nom": "BHP",
+   "sous_secteur": "Mines diversifiées et fer",
+   "secteur": "Métaux et mines",
+   "poids_portefeuille": 0.040096999999999994,
+   "poids_indice": 0.043672015121314696,
+   "ecart": -0.003575015121314702
+  },
+  {
+   "nom": "CF Industries",
+   "sous_secteur": "Engrais",
+   "secteur": "Agriculture",
+   "poids_portefeuille": 0.038575,
+   "poids_indice": 0.00931344581883106,
+   "ecart": 0.029261554181168936
+  },
+  {
+   "nom": "Cenovus Energy",
+   "sous_secteur": "Pétrolières intégrées",
+   "secteur": "Énergie",
+   "poids_portefeuille": 0.036692,
+   "poids_indice": 0.007507613691323677,
+   "ecart": 0.029184386308676327
+  },
+  {
+   "nom": "Repsol",
+   "sous_secteur": "Pétrolières intégrées",
+   "secteur": "Énergie",
+   "poids_portefeuille": 0.030919,
+   "poids_indice": 0.006799358411562829,
+   "ecart": 0.02411964158843717
+  },
+  {
+   "nom": "Valero Energy",
+   "sous_secteur": "Raffinage",
+   "secteur": "Énergie",
+   "poids_portefeuille": 0.029993,
+   "poids_indice": 0.0073943480146160595,
+   "ecart": 0.02259865198538394
+  },
+  {
+   "nom": "Glencore",
+   "sous_secteur": "Mines diversifiées et fer",
+   "secteur": "Métaux et mines",
+   "poids_portefeuille": 0.029419,
+   "poids_indice": 0.014565262778753236,
+   "ecart": 0.014853737221246765
+  },
+  {
+   "nom": "Bunge Global",
+   "sous_secteur": "Négoce et transformation",
+   "secteur": "Agriculture",
+   "poids_portefeuille": 0.027189,
+   "poids_indice": 0.006285007620792221,
+   "ecart": 0.02090399237920778
+  },
+  {
+   "nom": "Darling Ingredients",
+   "sous_secteur": "Négoce et transformation",
+   "secteur": "Agriculture",
+   "poids_portefeuille": 0.026479,
+   "poids_indice": 0.003936121290481581,
+   "ecart": 0.02254287870951842
+  },
+  {
+   "nom": "Amcor",
+   "sous_secteur": "Emballage",
+   "secteur": "Agriculture",
+   "poids_portefeuille": 0.025703000000000004,
+   "poids_indice": 0.01070729856132646,
+   "ecart": 0.014995701438673544
+  },
+  {
+   "nom": "Vylor",
+   "sous_secteur": "Semences et phyto",
+   "secteur": "Agriculture",
+   "poids_portefeuille": 0.023908,
+   "poids_indice": 0.02396291454326537,
+   "ecart": -5.491454326536985e-05
+  },
+  {
+   "nom": "Chevron",
+   "sous_secteur": "Pétrolières intégrées",
+   "secteur": "Énergie",
+   "poids_portefeuille": 0.020341,
+   "poids_indice": 0.030170525219226932,
+   "ecart": -0.00982952521922693
+  },
+  {
+   "nom": "Nucor",
+   "sous_secteur": "Acier",
+   "secteur": "Métaux et mines",
+   "poids_portefeuille": 0.018887,
+   "poids_indice": 0.014686827060590444,
+   "ecart": 0.004200172939409557
+  },
+  {
+   "nom": "Suzano",
+   "sous_secteur": "Papier, bois et forêts",
+   "secteur": "Agriculture",
+   "poids_portefeuille": 0.018681,
+   "poids_indice": 0.015046881655382618,
+   "ecart": 0.003634118344617382
+  },
+  {
+   "nom": "Vale",
+   "sous_secteur": "Mines diversifiées et fer",
+   "secteur": "Métaux et mines",
+   "poids_portefeuille": 0.016932,
+   "poids_indice": 0.00904625224450873,
+   "ecart": 0.007885747755491269
+  },
+  {
+   "nom": "ArcelorMittal",
+   "sous_secteur": "Acier",
+   "secteur": "Métaux et mines",
+   "poids_portefeuille": 0.014705,
+   "poids_indice": 0.006402027671574624,
+   "ecart": 0.008302972328425376
+  },
+  {
+   "nom": "Phillips 66",
+   "sous_secteur": "Raffinage",
+   "secteur": "Énergie",
+   "poids_portefeuille": 0.013077000000000002,
+   "poids_indice": 0.0073449850591156265,
+   "ecart": 0.005732014940884375
+  },
+  {
+   "nom": "Gold Fields",
+   "sous_secteur": "Or",
+   "secteur": "Métaux et mines",
+   "poids_portefeuille": 0.010801,
+   "poids_indice": 0.008157692667199066,
+   "ecart": 0.0026433073328009336
+  },
+  {
+   "nom": "Canadian Natural Resources",
+   "sous_secteur": "Exploration-production",
+   "secteur": "Énergie",
+   "poids_portefeuille": 0.009751,
+   "poids_indice": 0.01955636572552144,
+   "ecart": -0.009805365725521441
+  },
+  {
+   "nom": "Packaging Corp of America",
+   "sous_secteur": "Emballage",
+   "secteur": "Agriculture",
+   "poids_portefeuille": 0.007318,
+   "poids_indice": 0.01130223761738525,
+   "ecart": -0.00398423761738525
+  },
+  {
+   "nom": "Suncor",
+   "sous_secteur": "Pétrolières intégrées",
+   "secteur": "Énergie",
+   "poids_portefeuille": 0.005911,
+   "poids_indice": 0.01570831685467764,
+   "ecart": -0.009797316854677642
+  },
+  {
+   "nom": "Wilmar International",
+   "sous_secteur": "Négoce et transformation",
+   "secteur": "Agriculture",
+   "poids_portefeuille": 0.0056279999999999985,
+   "poids_indice": 0.013448419214699305,
+   "ecart": -0.007820419214699306
+  },
+  {
+   "nom": "Barrick",
+   "sous_secteur": "Or",
+   "secteur": "Métaux et mines",
+   "poids_portefeuille": 0.005601,
+   "poids_indice": 0.015397286714478155,
+   "ecart": -0.009796286714478155
+  },
+  {
+   "nom": "ConocoPhillips",
+   "sous_secteur": "Exploration-production",
+   "secteur": "Énergie",
+   "poids_portefeuille": 0.002866,
+   "poids_indice": 0.012656279962332232,
+   "ecart": -0.009790279962332232
+  },
+  {
+   "nom": "Franco-Nevada",
+   "sous_secteur": "Streaming métaux précieux",
+   "secteur": "Métaux et mines",
+   "poids_portefeuille": 0.0027689999999999998,
+   "poids_indice": 0.012558189017556336,
+   "ecart": -0.009789189017556335
+  }
+ ],
+ "risque": {
+  "nb_semaines": 0,
+  "disponible": false
+ },
+ "semaine": null,
+ "methode": "Capital fictif de 10 M$ ; dividendes nets d'une retenue forfaitaire de 15 % ; frais de 10 pb par transaction ; exécution au cours de clôture du vendredi. Indice : S&P Global Natural Resources Net TR (USD)."
+}
