@@ -43,6 +43,7 @@ SORTIE = RACINE / "docs" / "data" / "performance.json"
 
 CAPITAL = 10_000_000.0
 FRAIS = 0.0010            # 10 points de base par transaction
+SEUIL_ORDRE = 0.005       # zone de tolérance : pas d'ordre si l'écart à la cible d'une ligne détenue est < 0,5 pt
 RETENUE = 0.15            # retenue à la source forfaitaire sur les dividendes
 INDICE = ".SPGNRUN"
 SEMAINES_MIN_RISQUE = 12  # en dessous, les indicateurs de risque réalisés n'ont pas de sens
@@ -132,6 +133,16 @@ def reequilibrer(actions, cash, w, px, date):
         raise SystemExit(f"Cours manquant le {date.date()} pour : {manquants}")
     actuel = actions * px[actions.index]
     v = actuel.sum() + cash
+    # Zone de tolérance : une ligne déjà détenue et gardée dont l'écart à la cible est < 0,5 pt
+    # reste telle quelle ; le reste de l'écart est réparti sur les lignes réellement échangées.
+    w = w.reindex(actions.index, fill_value=0.0)
+    w_act = actuel / v
+    garde = (w > 0) & (w_act > 0) & ((w - w_act).abs() < SEUIL_ORDRE)
+    if garde.any() and (~garde & (w > 0)).any():
+        libre = 1.0 - w_act[garde].sum()
+        autres = w[~garde]
+        w = pd.concat([w_act[garde], autres * libre / autres.sum()]).reindex(actions.index)
+        print(f"Zone de tolérance : {int(garde.sum())} lignes sans ordre (écart < {SEUIL_ORDRE:.1%}).")
     v_net = v
     for _ in range(5):  # les frais dépendent des montants échangés, qui dépendent des frais
         cible = w.reindex(actions.index, fill_value=0.0) * v_net

@@ -20,6 +20,7 @@ Usage :
   scores.csv : colonnes RIC;score (score entier de -2 à +2 ; ligne absente ou vide = non détenue)
 """
 import json, sys
+from pathlib import Path
 import numpy as np
 import pandas as pd
 from scipy.optimize import minimize
@@ -45,6 +46,13 @@ PARAM = {
     # Une valeur notée +1 ou +2 n'est pas sous-pondérée de plus de 1 pt : l'optimiseur ne
     # « finance » pas les +2 en vidant une valeur qu'on aime.
     "sous_ponderation_max_note_positive": 0.01,
+    # Une valeur notée 0 (pas de conviction) ne dépasse pas son poids indiciel de plus de 0,5 pt :
+    # les surpondérations restent réservées aux convictions.
+    "surponderation_max_note_nulle": 0.005,
+    # Coût de rotation : chaque point de poids échangé coûte autant que 0,3 % d'alpha annuel.
+    # Utilisé seulement quand le portefeuille existe déjà (portefeuille/positions.csv) :
+    # l'optimiseur ne bouge une ligne que si le gain attendu dépasse ce coût.
+    "penalite_rotation": 0.003,
 }
 
 
@@ -57,18 +65,25 @@ def optimiser(w_b, cov, alpha, eligibles, secteurs, lam, plafonds_extra=None, p=
     haut = np.where(eligibles, np.minimum(w_b + p["ecart_titre"], p["max_ligne"]), 0.0)
     if plafonds_extra is not None:
         haut = np.minimum(haut, plafonds_extra)
+    if p.get("plafond") is not None:
+        haut = np.minimum(haut, np.maximum(p["plafond"], bas))
     if p.get("plancher") is not None:
         bas = np.where(haut > 0, np.maximum(bas, np.minimum(p["plancher"], haut)), bas)
     s = cov.values
     a = alpha.values
+    w0 = p.get("actuel")
+    k = p.get("penalite_rotation", 0.0) if w0 is not None else 0.0
+    eps = 1e-6   # valeur absolue lissée (dérivable) pour le coût de rotation
 
     def f(w):
         wa = w - w_b
-        return -(a @ wa) + lam * wa @ s @ wa
+        rot = k * np.sum(np.sqrt((w - w0) ** 2 + eps ** 2)) if k else 0.0
+        return -(a @ wa) + lam * wa @ s @ wa + rot
 
     def g(w):
         wa = w - w_b
-        return -a + 2 * lam * s @ wa
+        d = k * (w - w0) / np.sqrt((w - w0) ** 2 + eps ** 2) if k else 0.0
+        return -a + 2 * lam * s @ wa + d
 
     cons = [{"type": "eq", "fun": lambda w: w.sum() - 1.0, "jac": lambda w: np.ones(n)}]
     for sec in secteurs.unique():
@@ -81,7 +96,7 @@ def optimiser(w_b, cov, alpha, eligibles, secteurs, lam, plafonds_extra=None, p=
             cons.append({"type": "ineq", "fun": lambda w, m=m, c=c2, b=b: b - (m @ w - c), "jac": lambda w, m=m: -m})
             cons.append({"type": "ineq", "fun": lambda w, m=m, c=c2, b=b: b + (m @ w - c), "jac": lambda w, m=m: m})
 
-    x0 = np.clip(w_b, bas, haut)
+    x0 = np.clip(w0 if w0 is not None else w_b, bas, haut)
     x0 = x0 / x0.sum()
     res = minimize(f, x0, jac=g, bounds=list(zip(bas, haut)), constraints=cons, method="SLSQP",
                    options={"maxiter": 500, "ftol": 1e-12})
@@ -114,7 +129,7 @@ def standardiser(scores):
     return (scores - s.mean()) / s.std(ddof=0)
 
 
-def construire(w_b, cov, scores, secteurs, p=PARAM):
+def construire(w_b, cov, scores, secteurs, p=PARAM, actuel=None):
     """Cherche lambda pour viser l'écart de suivi cible. Renvoie (poids, lambda, risque)."""
     eligibles = scores.notna().values
     trop_gros = w_b.index[(~eligibles) & (w_b.values > p["ecart_titre"])].tolist()
@@ -128,6 +143,12 @@ def construire(w_b, cov, scores, secteurs, p=PARAM):
                                                  np.asarray(w_b) - p["sous_ponderation_max_note_positive"], 0.0))
     if plancher.any():
         p = dict(p, plancher=plancher)
+    if p.get("surponderation_max_note_nulle") is not None:
+        plafond = np.where(scores.fillna(-99).values == 0,
+                           np.asarray(w_b) + p["surponderation_max_note_nulle"], 1.0)
+        p = dict(p, plafond=plafond)
+    if actuel is not None:
+        p = dict(p, actuel=np.asarray(actuel, dtype=float))
     sigma_res, _ = vol_residuelle(cov, w_b.values)
     alpha = p["ic"] * sigma_res * standardiser(scores).fillna(0.0)
 
@@ -163,6 +184,16 @@ def construire(w_b, cov, scores, secteurs, p=PARAM):
     # redistribuer leur poids à la main (ce qui ferait sortir d'autres lignes des limites).
     el2 = eligibles & ((w >= p["poids_min_detenu"]) | (w_b.values > p["ecart_titre"]))
     if (el2 != eligibles).any():
+        w = opt(lam, el2)
+    # Trop de lignes : on retire la plus petite (hors valeurs > 3 % de l'indice, obligatoires) et on réoptimise.
+    for _ in range(20):
+        tenus = (w >= 1e-6)
+        if tenus.sum() <= p["nb_titres"][1]:
+            break
+        cand = np.where(tenus & (w_b.values <= p["ecart_titre"]) & ~(np.asarray(p.get("plancher", np.zeros(len(w)))) > 0))[0]
+        if not len(cand):
+            break
+        el2 = el2.copy(); el2[cand[np.argmin(w[cand])]] = False
         w = opt(lam, el2)
     w[w < 1e-6] = 0.0
     risque = risque_ex_ante(w, w_b.values, cov, secteurs)
@@ -222,7 +253,20 @@ if __name__ == "__main__":
     cov, delta = ledoit_wolf(r[univers], periodes_an=52 if frequence == "hebdo" else 252)
     sc = pd.read_csv(f_scores, sep=";", encoding="utf-8-sig", dtype={"score": str}).set_index("RIC").score
     sc = pd.to_numeric(sc.str.strip().str.replace(",", ".", regex=False), errors="coerce")  # accepte 1,5 comme 1.5
-    w, alpha, risque = construire(w_b, cov, sc.reindex(univers), ind.secteur[univers])
+    # Portefeuille existant : on part de ses poids du jour et on pénalise la rotation.
+    actuel, f_pos = None, Path(__file__).resolve().parents[1] / "portefeuille" / "positions.csv"
+    if f_pos.exists():
+        pos = pd.read_csv(f_pos, sep=";", decimal=",", encoding="utf-8-sig").set_index("RIC").actions
+        cash = float(pos.get("CASH_USD", 0.0))
+        pos = pos.drop("CASH_USD", errors="ignore")
+        px = cours.ffill().iloc[-1]
+        val = (pos * px.reindex(pos.index)).fillna(0.0)
+        w_act = (val / (val.sum() + cash)).reindex(univers, fill_value=0.0)
+        actuel = w_act / w_act.sum() if w_act.sum() > 0 else None
+        print(f"Portefeuille actuel lu ({int((w_act > 0).sum())} lignes) : coût de rotation appliqué.")
+    # Les valeurs sans historique sont détenues en plus : elles comptent dans la limite de lignes.
+    p_opt = dict(PARAM, nb_titres=(PARAM["nb_titres"][0], PARAM["nb_titres"][1] - len(exclues)))
+    w, alpha, risque = construire(w_b, cov, sc.reindex(univers), ind.secteur[univers], p=p_opt, actuel=actuel)
     # On revient aux poids de l'indice complet : la partie optimisée est réduite de la part fixe.
     # Les écarts restent dans les limites (ils sont multipliés par 1 - part fixe < 1).
     w_tot = pd.concat([w * (1 - fixe), w_b_tot[exclues]])
@@ -232,6 +276,8 @@ if __name__ == "__main__":
     risque["contrib_te_secteur"] *= (1 - fixe)
     risque["nb_titres"] = int((w_tot > 0).sum())
     pb = controles(w_tot, w_b_tot[w_tot.index], ind.secteur[w_tot.index])
+    if actuel is not None:
+        risque["rotation_vs_actuel"] = float((w - actuel).abs().sum() / 2 * (1 - fixe))
 
     idx = w_tot.index
     out = pd.DataFrame({"nom": ind.Name[idx], "secteur": ind.secteur[idx], "score": sc.reindex(idx),

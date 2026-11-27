@@ -29,6 +29,12 @@ docs/         le site public
    (puis relancer `build_site_data.py` pour qu'il apparaisse dans la liste).
 5. Publier : `git add . && git commit -m "Semaine du JJ/MM" && git push`
 
+## Routine du vendredi en un clic
+
+Double-cliquer sur `hebdo.bat` (à la racine du projet) après avoir enregistré `data_brute/cours_quotidiens_AAAAMMJJ.csv`
+(et si besoin `data_brute/dividendes_AAAAMMJJ.csv`). Il lance l'optimiseur, affiche le résultat, demande confirmation,
+lance `semaine` avec les nouveaux poids puis ouvre l'aperçu du site sur http://localhost:8000.
+
 ## Construire le portefeuille (optimiseur)
 
 1. **Cours quotidiens sur trois ans** (pour la covariance et le risque), dans Excel avec LSEG :
@@ -43,6 +49,9 @@ docs/         le site public
    - Les valeurs marquées « oui » (plus de 3 % de l'indice) doivent obligatoirement être notées.
    - Pour détenir 30 à 35 titres, il faut noter environ 50 à 55 valeurs : les scores négatifs et une partie des 0 finissent à 0 %. Les écarts sectoriels sont fixés dans `cibles_secteur` (en haut de `optimiseur.py`), les scores choisissent les sociétés dans chaque secteur.
    - Une valeur notée +1 ou +2 n'est jamais sous-pondérée de plus d'1 point par rapport à l'indice (`sous_ponderation_max_note_positive`) : une grosse capitalisation bien notée reste proche de son poids indiciel au lieu de servir de source de financement.
+   - Une valeur notée 0 ne dépasse pas son poids indiciel de plus de 0,5 pt (`surponderation_max_note_nulle`) : les surpondérations restent réservées aux convictions.
+   - Si le portefeuille existe déjà (`portefeuille/positions.csv`), l'optimiseur part des poids actuels et applique un coût de rotation (`penalite_rotation`) : une ligne ne bouge que si le gain attendu dépasse le coût. Au-delà de 35 lignes, il retire la plus petite et réoptimise.
+   - Au rééquilibrage, `run_hebdo.py` ne passe pas d'ordre sur une ligne détenue dont l'écart à la cible est inférieur à 0,5 pt (`SEUIL_ORDRE`).
 3. Lancer :
    ```
    cd scripts
