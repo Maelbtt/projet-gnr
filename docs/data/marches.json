@@ -1,5 +1,5 @@
 {
- "maj": "2026-11-26 20:30 UTC",
+ "maj": "2026-11-27 20:17 UTC",
  "series": [
   {
    "id": "DCOILBRENTEU",
@@ -1481,11 +1481,11 @@
    "lien_avis": "Or : des recours répétés signalent des liquidités rares",
    "decimales": 1,
    "source": "FRED",
-   "date": "2026-11-25",
-   "valeur": 0.0,
+   "date": "2026-11-27",
+   "valeur": 23.15,
    "reference": {
-    "date": "2026-11-18",
-    "valeur": 0.0
+    "date": "2026-11-20",
+    "valeur": 0.001
    },
    "variation_en_points": false,
    "historique": [
@@ -1718,8 +1718,8 @@
      0.104
     ],
     [
-     "2026-11-24",
-     0.002
+     "2026-11-27",
+     23.15
     ]
    ]
   },
@@ -3684,6 +3684,6 @@
   }
  ],
  "erreurs": [
-  "PCOPPUSDM : dernière donnée le 2026-09-01 (86 jours), série retirée de la page"
+  "PCOPPUSDM : dernière donnée le 2026-09-01 (87 jours), série retirée de la page"
  ]
 }
